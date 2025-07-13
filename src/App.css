@@ -189,13 +189,29 @@ h1 {
   margin: 0 auto;
 }
 
+
+.input-with-icon {
+  position: relative;
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  color: #888;
+  /* pointer-events: none;
+   */
+}
+
 .search input {
   height: 68px;
   width: 100%;
   border-radius: 15px;
   border: none;
   background: #e1e0e0;
-  padding: 0 26px;
+  padding: 0 50px 0 26px;
   font-size: 18px;
 }
 
@@ -313,6 +329,16 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.btn-clear {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 5px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 
 button:hover {
