@@ -1,0 +1,418 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  line-height: 1;
+  background-color: #fff;
+  color: #000;
+}
+
+#root {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+}
+
+.top {
+  margin-bottom: 40px;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+}
+
+.nav ul {
+  display: flex;
+  list-style: none;
+  gap: 18px;
+}
+
+.nav ul li a {
+  text-decoration: none;
+  color: #000;
+}
+
+.nav ul li a:hover {
+  text-decoration: underline;
+}
+
+.panel {
+  display: flex;
+  height: inherit;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.donate {
+  font-weight: bold;
+  display: flex;
+  border-radius: 16px;
+  padding: 9px 10px;
+  color: #5b22e0;
+  height: 30px;
+  font-size: 14px;
+  align-items: center;
+  border: 2px solid #5b22e0
+}
+
+.request a {
+  color: #000;
+  text-decoration: none;
+  position: relative;
+}
+
+.request a:hover {
+  text-decoration: underline;
+}
+
+.request-ai-tool-container {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+}
+
+.request-ai-tool {
+  position: relative;
+  height: auto;
+  width: 480px;
+  padding: 40px 30px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.request-ai-tool h2 {
+  text-align: center;
+  color: #474747;
+  margin: 0;
+}
+
+.request-ai-tool .form {
+  width: 400px;
+  display: flex;
+  margin: 40px auto 20px;
+  gap: 16px;
+  flex-direction: column;
+}
+
+.request-ai-tool .form .title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.request-ai-tool .form .title .character-count {
+  font-size: 10px;
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+.request-ai-tool .form span {
+  color: #474747;
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.request-ai-tool .form input {
+  height: 40px;
+  width: 100%;
+  border-radius: 6px;
+  border: none;
+  background: #e1e0e0;
+  padding: 0 8px;
+  color: #474747;
+  font-weight: 700;
+}
+
+.request-ai-tool .form textarea {
+  resize: none;
+  width: 100%;
+  height: 200px;
+  padding: 8px;
+  background: #e1e0e0;
+  border: none;
+  border-radius: 6px;
+  color: #474747;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+
+.request-ai-tool .form input:focus-visible,
+.request-ai-tool .form textarea:focus-visible,
+.search input:focus-visible {
+  outline: none;
+}
+
+.test {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  margin: auto;
+  align-items: center;
+}
+
+.logo a {
+  margin: auto;
+  text-decoration: none;
+}
+
+h1 {
+  text-align: center;
+  margin: 0;
+  color: #474747;
+  font-size: 16px;
+}
+
+.container {
+  width: 900px;
+  margin: 0 auto;
+}
+
+.search input {
+  height: 68px;
+  width: 100%;
+  border-radius: 15px;
+  border: none;
+  background: #e1e0e0;
+  padding: 0 26px;
+  font-size: 18px;
+}
+
+.expanded-tags {
+  display: grid;
+  max-height: 400px;
+  position: relative;
+  overflow-y: scroll;
+  border-bottom: 1px solid #c6c6c6;
+  padding: 0;
+  padding: 6px;
+  margin: 16px auto;
+  width: 90%;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.minimized-tags {
+  display: flex;
+  align-items: center;
+}
+
+.expanded-tags,
+.minimized-tags {
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 4px;
+  background: #fff;
+}
+
+.expanded-tags li,
+.minimized-tags li {
+  background: #f7f7f7;
+  border-radius: 6px;
+
+}
+
+.link-tag {
+  display: flex;
+  align-items: center;
+  padding: 4px 10px;
+  font-size: 12px;
+  color: #4e4e4e;
+  text-decoration: none;
+  height: 24px;
+  gap: 6px;
+}
+
+.expanded-tags li {
+  height: auto;
+}
+
+.search ul li:hover {
+  cursor: pointer;
+  background: #ffffff;
+  text-decoration: underline;
+}
+
+.search ul li .icon {
+  width: 16px;
+}
+
+.expand,
+.minimize {
+  display: flex;
+  margin: 34px;
+  margin: 0 auto;
+}
+
+.sort {
+  display: flex;
+  width: 87px;
+  height: 42px;
+  align-items: center;
+  border-radius: 6px;
+  justify-content: space-evenly;
+  margin-bottom: 32px;
+  background: #f7f7f7;
+}
+
+.sort button {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 6px;
+}
+
+.btn-primary,
+button {
+  background: #ffffff;
+  border: 0;
+}
+
+.btn-send {
+  height: 40px;
+  color: #fff;
+  background: #0e6de7;
+  width: 100%;
+  font-size: 18px;
+  letter-spacing: 4px;
+  border-radius: 20px;
+}
+
+.btn-cancel {
+  font-size: 18px;
+  margin-top: 50px;
+}
+
+.btn-cross {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  right: -40px;
+  top: -40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 14px;
+  row-gap: 6px;
+}
+
+.list .tool img {
+  width: 18px;
+  height: 18px;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 100px;
+}
+
+.card .tool {
+  background: #F0F0F0;
+  padding: 10px;
+  height: 148px;
+  max-height: 148px;
+  border-radius: 6px;
+}
+
+.card .tool img {
+  width: 32px;
+  height: 32px;
+}
+
+.card p {
+  margin-top: 12px;
+  margin-bottom: 0;
+  font-size: 12px;
+  line-height: 18px;
+  height: 94px;
+  overflow: hidden;
+}
+
+.tool div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+
+.tool a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.tool a:hover {
+  text-decoration: underline;
+}
+
+.tool a h2 {
+  font-size: 14px;
+  margin: 0;
+}
+
+.tool .tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  font-size: 8px;
+}
+
+.tool .dot {
+  font-size: 14px;
+}
+
+/* RequestAiTool */
+
+.container-test {
+  margin: auto;
+  width: 400px;
+}
+
+
+
+/* Ads */
+.ads {
+  background: red;
+  display: grid;
+  /* justify-content: space-around; */
+  grid-template-columns: repeat(4, 1fr);
+  margin-bottom: 40px;
+  height: 225px;
+}
+
+.ads .img {
+  background: black;
+}
