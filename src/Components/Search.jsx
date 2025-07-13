@@ -5,6 +5,8 @@ import { useState } from "react";
 
 export default function Search({ onSearch }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+  const [searchCount, setSearchCount] = useState(0);
 
   const tags = [
     ...new Set(
@@ -17,7 +19,16 @@ export default function Search({ onSearch }) {
   ];
 
   function handleChange(e) {
-    onSearch(e.target.value.toLowerCase());
+    const value = e.target.value;
+    setSearchValue(value);
+    setSearchCount(value.length)
+    onSearch(value.toLowerCase());
+  }
+
+  const handleClear = () => {
+    setSearchCount(0);
+    setSearchValue("");
+    onSearch("");
   }
 
   const toggleSearchTags = () => {
@@ -25,13 +36,23 @@ export default function Search({ onSearch }) {
   };
 
   return (
-    <div class="container">
+    <div className="container">
       <div className="search">
-        <input
-          type="text"
-          placeholder="Search..."
-          onChange={handleChange}
-        />
+        <div className="input-with-icon">
+          {
+            searchCount > 0 ?
+            <button className="btn-clear" onClick={handleClear}>
+              <Icons.X className="clear-icon" size={20} />
+            </button>
+            : <Icons.Search className="search-icon" size={20} />
+          }
+          <input
+            type="text"
+            placeholder="Search tool..."
+            value={searchValue}
+            onChange={handleChange}
+          />
+        </div>
         <ul className={isExpanded ? 'expanded-tags' : 'minimized-tags'}>
           {tags.map((tag, index) => {
             const iconData = tagIcons[tag] || {};

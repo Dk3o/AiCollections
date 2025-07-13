@@ -16,8 +16,6 @@ export default function AiToolList({ searchTerm }) {
     return nameMatch || tagMatch;
   });
 
-  
-
   return (
     <>
       <div className='sort'>
