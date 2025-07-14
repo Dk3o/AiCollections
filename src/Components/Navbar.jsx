@@ -23,7 +23,7 @@ export default function Navbar() {
   return (
     <header>
         <div className='container'>
-            <div class="theme-container">
+            <div className="theme-container">
                 <div className="theme">
                     <button className={`toggle-btn ${isDark ? "btn-light" : "btn-dark"}`}  onClick={toggleTheme}>
                         {isDark ? <Sun /> : <Moon color='#fff' />}

@@ -227,7 +227,7 @@ body.dark-mode .tool
   background: #e1e0e0;
   padding: 0 8px;
   color: #474747;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .request-ai-tool .form textarea {
@@ -239,9 +239,15 @@ body.dark-mode .tool
   border: none;
   border-radius: 6px;
   color: #474747;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 1px;
   line-height: 1.2;
+}
+.request-ai-tool .form input,
+.request-ai-tool .form textarea
+{
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+  Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 .request-ai-tool .form input:focus-visible,
@@ -466,7 +472,7 @@ button:hover {
 
 .card {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   margin-bottom: 100px;
 }
@@ -474,8 +480,7 @@ button:hover {
 .card .tool {
   background: #f3f1f1;
   padding: 10px;
-  height: 148px;
-  max-height: 148px;
+  height: 200px;
   border-radius: 6px;
 }
 
@@ -485,11 +490,13 @@ button:hover {
 }
 
 .card p {
-  margin-top: 12px;
-  margin-bottom: 0;
+  margin: 12px 0;
   font-size: 12px;
-  line-height: 18px;
-  height: 94px;
+  line-height: 16px;
+  max-height: 112px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
   overflow: hidden;
 }
 
