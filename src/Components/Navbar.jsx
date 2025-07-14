@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import {Sun, Moon} from "lucide-react";
 import { Link } from 'react-router-dom';
 import RequestAiTool from './RequestAiTool';
 
 export default function Navbar() {
     const [requestOpen, isRequestOpen] = useState(false);
+    const [isDark, setIsDark] = useState(false);
 
     const handleDonation = () => {
         console.log("Donation clicked!")
@@ -12,6 +14,11 @@ export default function Navbar() {
     const handleRequestAiTool = () => {
         isRequestOpen(true);
     }
+
+    const toggleTheme = () => {
+      setIsDark(!isDark);
+      document.body.className = isDark ? "light-mode" : "dark-mode"; // optional theme application
+    };
 
   return (
     <header>
@@ -34,6 +41,11 @@ export default function Navbar() {
                         <Link to="/">About</Link>
                         </li>
                     </ul>
+                    <div className="theme">
+                        <button className={`toggle-btn ${isDark ? "btn-light" : "btn-dark"}`}  onClick={toggleTheme}>
+                            {isDark ? <Sun /> : <Moon color='#fff' />}
+                        </button>
+                    </div>
                     <div className="panel">
                         <div className="request">
                             <a href="#" onClick={handleRequestAiTool}>
@@ -47,11 +59,6 @@ export default function Navbar() {
                     </div>
                 </nav>
             </div>
-        {/* <div className="logo">
-            <Link to="/">
-            <h1>Ai collections</h1>
-            </Link>
-        </div> */}
         {/* <div className="ads">
             <div className='img'></div>
             <div className='img'></div>

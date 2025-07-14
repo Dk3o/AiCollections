@@ -11,7 +11,7 @@ export default function RequestAiTool({ onClose }) {
             onClick={onClose}>
             <X size={20}/>
           </button>
-          <h2>Request form</h2>
+          <h2>Request tool</h2>
           <form className="form">
             <div>
             <span>Tool name</span>

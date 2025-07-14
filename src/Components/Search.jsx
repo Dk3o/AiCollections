@@ -68,7 +68,7 @@ export default function Search({ onSearch }) {
             );
           })}
         </ul>
-        <button onClick={toggleSearchTags} className={`btn-primary ${isExpanded ? 'minimize': 'expand'}`}>
+        <button onClick={toggleSearchTags} className={`btn-primary-${isExpanded ? 'minimize': 'expand'}`}>
           {isExpanded ? <Icons.ChevronUp size={32} />: <Icons.ChevronDown size={32} />}
         </button>
       </div>
