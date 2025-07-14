@@ -23,6 +23,13 @@ export default function Navbar() {
   return (
     <header>
         <div className='container'>
+            <div class="theme-container">
+                <div className="theme">
+                    <button className={`toggle-btn ${isDark ? "btn-light" : "btn-dark"}`}  onClick={toggleTheme}>
+                        {isDark ? <Sun /> : <Moon color='#fff' />}
+                    </button>
+                </div>
+            </div>
             <div className="top">
                 <nav className="nav">
                     <div className="logo">
@@ -41,11 +48,6 @@ export default function Navbar() {
                         <Link to="/">About</Link>
                         </li>
                     </ul>
-                    <div className="theme">
-                        <button className={`toggle-btn ${isDark ? "btn-light" : "btn-dark"}`}  onClick={toggleTheme}>
-                            {isDark ? <Sun /> : <Moon color='#fff' />}
-                        </button>
-                    </div>
                     <div className="panel">
                         <div className="request">
                             <a href="#" onClick={handleRequestAiTool}>
@@ -65,7 +67,6 @@ export default function Navbar() {
             <div className='img'></div>
             <div className='img'></div>
         </div> */}
-            
         </div>
     </header>
   )
