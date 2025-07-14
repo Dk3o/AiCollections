@@ -48,20 +48,25 @@ body.dark-mode .btn-cancel,
 body.dark-mode .btn-cross,
 body.dark-mode .btn-clear
 {
-  background: #22243b;
+  background: #30334d;
 }
 
-body.dark-mode .search input,
+body.dark-mode .search input {
+ background: #22243b;
+}
+
 body.dark-mode .expanded-tags li,
 body.dark-mode .minimized-tags li,
 body.dark-mode .card .tool
 {
-  background: #30334d;
+  background: #282a43;
 }
 
 body.dark-mode .expanded-tags {
-  border-color: #30334d;
+  border-color: #282a43;
 }
+
+
 
 
 body.dark-mode,
