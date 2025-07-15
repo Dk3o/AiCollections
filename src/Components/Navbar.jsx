@@ -23,41 +23,46 @@ export default function Navbar() {
   return (
     <header>
         <div className='container'>
-            <div className="theme-container">
-                <div className="theme">
-                    <button className={`toggle-btn ${isDark ? "btn-light" : "btn-dark"}`}  onClick={toggleTheme}>
-                        {isDark ? <Sun /> : <Moon color='#fff' />}
-                    </button>
-                </div>
-            </div>
+   
             <div className="top">
                 <nav className="nav">
-                    <div className="logo">
-                        <a href="/">
-                            <h1>Ai Collections</h1>
-                        </a>
-                    </div>
-                    <ul>
-                        <li>
-                        <Link to="/">Search Ai tools</Link>
-                        </li>
-                        <li>
-                        <Link to="/">Contact</Link>
-                        </li>
-                        <li>
-                        <Link to="/">About</Link>
-                        </li>
-                    </ul>
-                    <div className="panel">
-                        <div className="request">
-                            <a href="#" onClick={handleRequestAiTool}>
-                            <span>Did we miss any tool?</span>
+                    <div className="hello">
+                        <div className="logo">
+                            <a href="/">
+                                <h1>Ai Collections</h1>
                             </a>
-                            {requestOpen && <RequestAiTool onClose={() => isRequestOpen(false)} /> }
                         </div>
-                        <div className="donation">
-                            <button className="donate" onClick={handleDonation}>Donate</button>
+                        <ul>
+                            <li>
+                            <Link to="/">Search Ai tools</Link>
+                            </li>
+                            <li>
+                            <Link to="/">Contact</Link>
+                            </li>
+                            <li>
+                            <Link to="/">About</Link>
+                            </li>
+                        </ul>
+                        <div className="panel">
+                            <div className="request">
+                                <a href="#" onClick={handleRequestAiTool}>
+                                <span>Did we miss any tool?</span>
+                                </a>
+                                {requestOpen && <RequestAiTool onClose={() => isRequestOpen(false)} /> }
+                            </div>
+                            <div className="donation">
+                                <button className="donate" onClick={handleDonation}>Donate</button>
+                            </div>
                         </div>
+                    </div>
+                    <div className="theme">
+                        <button 
+                            className={`toggle-btn ${isDark ? "btn-light" : "btn-dark"}`}  
+                            onClick={toggleTheme}
+                            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+                        >
+                            {isDark ? <Sun /> : <Moon color='#fff' />}
+                        </button>
                     </div>
                 </nav>
             </div>
