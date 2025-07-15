@@ -6,13 +6,20 @@ import AiToolList from "../Components/AiToolList";
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [activeTags, setActiveTags] = useState([]);
 
   return (
     <>
       <Navbar />
-      <Search onSearch={setSearchTerm}/>
+      <Search
+        onSearch={setSearchTerm}
+        onTagFilterChange={setActiveTags}
+      />
       <main>
-        <AiToolList searchTerm={searchTerm} />
+        <AiToolList
+          searchTerm={searchTerm}
+          activeTags={activeTags}
+        />
       </main>
     </>
   );

@@ -26,12 +26,13 @@ body,
 .expanded-tags,
 .minimized-tags,
 .search ul li:hover,
-.btn-primary-expand,
-.btn-primary-minimize,
 button,
 .btn-light,
 .donate {
   background: #fff;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.1) 0.5px, transparent 0);
+  background-size: 5px 5px;
+  background-attachment: fixed;
 }
 
 
@@ -41,33 +42,31 @@ body.dark-mode .request-ai-tool,
 body.dark-mode .expanded-tags,
 body.dark-mode .minimized-tags,
 body.dark-mode .search ul li:hover,
-body.dark-mode .btn-primary-expand,
-body.dark-mode .btn-primary-minimize,
 body.dark-mode .sort,
 body.dark-mode .btn-cancel,
 body.dark-mode .btn-cross,
 body.dark-mode .btn-clear
 {
   background: #30334d;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 0.5px, transparent 0);
+  background-size: 5px 5px;
+  background-attachment: fixed;
 }
 
 body.dark-mode .search input {
- background: #22243b;
+ background: rgba(34, 36, 59, 0.5);
 }
 
 body.dark-mode .expanded-tags li,
 body.dark-mode .minimized-tags li,
 body.dark-mode .card .tool
 {
-  background: #282a43;
+  background: rgba(40, 42, 67, 0.5);
 }
 
 body.dark-mode .expanded-tags {
   border-color: #282a43;
 }
-
-
-
 
 body.dark-mode,
 body.dark-mode .nav ul li a,
@@ -90,6 +89,17 @@ body.dark-mode .tool
   color: #fff;
 }
 
+body.dark-mode .link-tag.active {
+  background-color: rgb(0, 246, 255, 0.2);
+}
+
+.sort,
+.card .tool,
+.expanded-tags li,
+.minimized-tags li {
+  background: rgba(221, 221, 221, 0.5);
+}
+
 #root {
   max-width: 1440px;
   margin: 0 auto;
@@ -101,11 +111,10 @@ body.dark-mode .tool
   margin-bottom: 40px;
 }
 
-.nav {
+.hello {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  height: 40px;
+  justify-content: space-between;
 }
 
 .nav ul {
@@ -142,16 +151,8 @@ body.dark-mode .tool
   border: 2px solid #5b22e0
 }
 
-.theme-container {
-  position: relative;
-}
-
 .theme {
-  display: flex;
-  position: absolute;
-  right: -50px;
-  align-items: center;
-  margin: 5px;
+  position: relative;
 }
 
 .request a {
@@ -224,7 +225,7 @@ body.dark-mode .tool
   width: 100%;
   border-radius: 6px;
   border: none;
-  background: #e1e0e0;
+  background: rgb(191, 191, 191, 0.5);
   padding: 0 8px;
   color: #474747;
   font-weight: 500;
@@ -235,7 +236,7 @@ body.dark-mode .tool
   width: 100%;
   height: 200px;
   padding: 8px;
-  background: #e1e0e0;
+  background: rgb(191, 191, 191, 0.5);
   border: none;
   border-radius: 6px;
   color: #474747;
@@ -302,7 +303,7 @@ h1 {
   width: 100%;
   border-radius: 15px;
   border: none;
-  background: #e1e0e0;
+  background: rgba(189, 186, 186, 0.5);
   padding: 0 50px 0 26px;
   font-size: 18px;
   color: #999;
@@ -339,9 +340,7 @@ h1 {
 
 .expanded-tags li,
 .minimized-tags li {
-  background: #f3f1f1;
   border-radius: 6px;
-
 }
 
 .link-tag {
@@ -351,16 +350,24 @@ h1 {
   font-size: 12px;
   color: #4e4e4e;
   text-decoration: none;
-  height: 24px;
   gap: 6px;
+}
+
+.link-tag.active {
+  background: rgb(75, 174, 175, 0.5);
+  color: #fff;
+  border-radius: 6px;
+}
+
+ul li a.link-tag.active:hover {
+  text-decoration: none;
 }
 
 .expanded-tags li {
   height: auto;
 }
 
-.search ul li:hover {
-  cursor: pointer;
+.link-tag:hover {
   text-decoration: underline;
 }
 
@@ -373,6 +380,7 @@ h1 {
   display: flex;
   margin: 34px;
   margin: 0 auto;
+  background: transparent;
 }
 
 .sort {
@@ -383,7 +391,6 @@ h1 {
   border-radius: 6px;
   justify-content: space-evenly;
   margin-bottom: 32px;
-  background: #f3f1f1;
 }
 
 .sort button {
@@ -446,8 +453,11 @@ button,
   width: 30px;
   height: 30px;
   align-items: center;
-  justify-content: center;
   border-radius: 50%;
+  position: absolute;
+  top: -44px;
+  right: -50px;
+  margin: 5px;
 }
 
 .btn-dark {
@@ -462,13 +472,24 @@ button:hover {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 14px;
-  row-gap: 6px;
+  row-gap: 2px;
+}
+
+.list .tool {
+  display: flex;
 }
 
 .list .tool img {
   width: 18px;
   height: 18px;
 }
+
+/* .list .tool a:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+} */
 
 .card {
   display: grid;
@@ -478,7 +499,6 @@ button:hover {
 }
 
 .card .tool {
-  background: #f3f1f1;
   padding: 10px;
   height: 200px;
   border-radius: 6px;
@@ -500,24 +520,34 @@ button:hover {
   overflow: hidden;
 }
 
+.tool {
+  position: relative;
+  align-items: center;
+  gap: 10px;
+}
+
 .tool div {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-
-
 .tool a {
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 26px;
 }
+
+
 
 .tool a:hover {
   text-decoration: underline;
 }
 
 .tool a h2 {
-  font-size: 14px;
+  font-size: 16px;
   margin: 0;
 }
 
@@ -532,6 +562,7 @@ button:hover {
 .tool .dot {
   font-size: 14px;
 }
+
 
 /* RequestAiTool */
 
