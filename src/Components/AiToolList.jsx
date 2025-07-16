@@ -78,7 +78,7 @@ export default function AiToolList({ searchTerm, activeTags }) {
         <div className={list ? "list" : "card"}>
         {filteredTools.map(tool => (
           <div key={tool.name} className="tool">
-            <div>
+            <div className="tool-top">
               <a
                 target={`_blank_${tool.name.replace(/\s+/g, "_")}_${tool.url.length}`}
                 href={tool.url}
