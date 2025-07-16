@@ -17,7 +17,7 @@ body,
 .tool a,
 .request a,
 .btn-cancel
- {
+{
   color: #474747;
 }
 
@@ -28,7 +28,8 @@ body,
 .search ul li:hover,
 button,
 .btn-light,
-.donate {
+.donate
+{
   background: #fff;
   background-image: radial-gradient(rgba(0, 0, 0, 0.1) 0.5px, transparent 0);
   background-size: 5px 5px;
@@ -84,13 +85,19 @@ body.dark-mode .btn-cancel,
 body.dark-mode .btn-cross,
 body.dark-mode .btn-clear,
 body.dark-mode .link-tag,
-body.dark-mode .tool
+body.dark-mode .tool,
+.btn-clear-tags
 {
   color: #fff;
 }
 
 body.dark-mode .link-tag.active {
   background-color: rgb(0, 246, 255, 0.2);
+}
+
+body.dark-mode .btn-clear-tags {
+  background: #fff;
+  color: #000;
 }
 
 .sort,
@@ -282,8 +289,11 @@ h1 {
   margin: 0 auto;
 }
 
+.search {
+  position: relative;
+}
 
-.input-with-icon {
+.search .input-with-icon {
   position: relative;
   width: 100%;
 }
@@ -460,7 +470,19 @@ button,
   margin: 5px;
 }
 
-.btn-dark {
+.btn-clear-tags {
+  display: flex;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+}
+
+.btn-dark,
+.btn-clear-tags
+{
   background: #494b91;
 }
 
