@@ -357,14 +357,14 @@ h1 {
   display: flex;
   align-items: center;
   padding: 4px 10px;
-  font-size: 12px;
+  font-size: 14px;
   color: #4e4e4e;
   text-decoration: none;
   gap: 6px;
 }
 
 .link-tag.active {
-  background: rgb(75, 174, 175, 0.5);
+  background: rgb(0, 148, 163, 0.5);
   color: #fff;
   border-radius: 6px;
 }
@@ -495,6 +495,7 @@ button:hover {
   grid-template-columns: repeat(4, 1fr);
   column-gap: 14px;
   row-gap: 2px;
+  margin-bottom: 100px;
 }
 
 .list .tool {
@@ -533,7 +534,7 @@ button:hover {
 
 .card p {
   margin: 12px 0;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 16px;
   max-height: 112px;
   word-break: break-word;
@@ -548,7 +549,7 @@ button:hover {
   gap: 10px;
 }
 
-.tool div {
+.tool-top {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -562,14 +563,12 @@ button:hover {
   height: 26px;
 }
 
-
-
 .tool a:hover {
   text-decoration: underline;
 }
 
 .tool a h2 {
-  font-size: 16px;
+  font-size: 18px;
   margin: 0;
 }
 
@@ -578,7 +577,7 @@ button:hover {
   flex-wrap: wrap;
   align-items: center;
   gap: 4px;
-  font-size: 8px;
+  font-size: 10px;
 }
 
 .tool .dot {
