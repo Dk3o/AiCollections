@@ -44,6 +44,11 @@ export default function Search({ onSearch, onTagFilterChange }) {
     onTagFilterChange(newSelectedTags);
   };
 
+  const handleClearTags = () => {
+    setSelectedTags([]);
+    onTagFilterChange([]);
+  }
+
   return (
     <div className="container">
       <div className="search">
@@ -92,6 +97,15 @@ export default function Search({ onSearch, onTagFilterChange }) {
         >
           {isExpanded ? <Icons.ChevronUp size={32} /> : <Icons.ChevronDown size={32} />}
         </button>
+        {selectedTags.length > 0 && (
+          <button 
+            className="btn-clear-tags" 
+            onClick={handleClearTags}
+            aria-label="Clear tags"
+          >
+            <Icons.X className="clear-icon" size={20} />
+          </button>
+        )}
       </div>
     </div>
   );
