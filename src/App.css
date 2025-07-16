@@ -54,8 +54,11 @@ body.dark-mode .btn-clear
   background-attachment: fixed;
 }
 
-body.dark-mode .search input {
- background: rgba(34, 36, 59, 0.5);
+body.dark-mode .search input,
+body.dark-mode .request-ai-tool .form input,
+body.dark-mode .request-ai-tool .form textarea 
+{
+  background: rgba(34, 36, 59, 0.5);
 }
 
 body.dark-mode .expanded-tags li,
@@ -86,7 +89,9 @@ body.dark-mode .btn-cross,
 body.dark-mode .btn-clear,
 body.dark-mode .link-tag,
 body.dark-mode .tool,
-.btn-clear-tags
+.btn-clear-tags,
+body.dark-mode .request-ai-tool .form input,
+body.dark-mode .request-ai-tool .form textarea
 {
   color: #fff;
 }
@@ -98,6 +103,10 @@ body.dark-mode .link-tag.active {
 body.dark-mode .btn-clear-tags {
   background: #fff;
   color: #000;
+}
+
+body.dark-mode .btn-send {
+  background: rgba(14, 109, 231, 0.5);
 }
 
 .sort,
@@ -232,9 +241,8 @@ body.dark-mode .btn-clear-tags {
   width: 100%;
   border-radius: 6px;
   border: none;
-  background: rgb(191, 191, 191, 0.5);
+  background: rgba(189, 186, 186, 0.5);
   padding: 0 8px;
-  color: #474747;
   font-weight: 500;
 }
 
@@ -243,10 +251,9 @@ body.dark-mode .btn-clear-tags {
   width: 100%;
   height: 200px;
   padding: 8px;
-  background: rgb(191, 191, 191, 0.5);
+  background: rgba(189, 186, 186, 0.5);
   border: none;
   border-radius: 6px;
-  color: #474747;
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 1.2;
@@ -421,7 +428,7 @@ button,
 
 .btn-send {
   height: 40px;
-  background: #0e6de7;
+  background: rgba(14, 109, 231, 0.6);
   width: 100%;
   font-size: 18px;
   letter-spacing: 4px;
@@ -430,7 +437,7 @@ button,
 
 .btn-cancel {
   font-size: 18px;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 .btn-cross {
@@ -468,6 +475,7 @@ button,
   top: -44px;
   right: -50px;
   margin: 5px;
+  z-index: 999;
 }
 
 .btn-clear-tags {
