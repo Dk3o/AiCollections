@@ -117,7 +117,7 @@ console.log(value);
           <div>
             <div className='title'>
             <label htmlFor="tags">Tags</label>
-            <div class="counter">
+            <div className="counter">
               <span className='count'>
                 {(() => {
                   const segments = requestTool.tagsInput.split(";");
