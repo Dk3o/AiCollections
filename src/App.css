@@ -350,7 +350,7 @@ h1 {
   display: grid;
   max-height: 400px;
   position: relative;
-  overflow-y: scroll;
+  overflow-y: auto;
   border-bottom: 1px solid #c6c6c6;
   padding: 0;
   padding: 6px;
