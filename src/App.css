@@ -411,8 +411,8 @@ ul li a.link-tag.active:hover {
 .btn-primary-expand,
 .btn-primary-minimize {
   display: flex;
-  margin: 34px;
-  margin: 0 auto;
+  margin: 0 auto 50px;
+  padding: 20px;
   background: transparent;
 }
 
