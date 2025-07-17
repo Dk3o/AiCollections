@@ -13,10 +13,16 @@ body {
 }
 
 body,
+h1,
 .nav ul li a,
+.search input,
 .tool a,
 .request a,
-.btn-cancel
+.btn-cancel,
+.request-ai-tool h2,
+.request-ai-tool .form label,
+input[type="file"],
+input[type="file"]::file-selector-button:hover
 {
   color: #474747;
 }
@@ -138,6 +144,7 @@ body.dark-mode .btn-send {
   display: flex;
   list-style: none;
   gap: 18px;
+  padding: 0;
 }
 
 .nav ul li a {
@@ -205,7 +212,6 @@ body.dark-mode .btn-send {
 
 .request-ai-tool h2 {
   text-align: center;
-  color: #474747;
   margin: 0;
 }
 
@@ -231,7 +237,6 @@ body.dark-mode .btn-send {
 }
 
 .request-ai-tool .form label {
-  color: #474747;
   display: block;
   margin-bottom: 6px;
   font-weight: 500;
@@ -300,7 +305,6 @@ body.dark-mode .btn-send {
 h1 {
   text-align: center;
   margin: 0;
-  color: #474747;
   font-size: 16px;
 }
 
@@ -336,7 +340,6 @@ h1 {
   background: rgba(189, 186, 186, 0.5);
   padding: 0 50px 0 26px;
   font-size: 18px;
-  color: #999;
 }
 
 .search input::placeholder {
@@ -513,7 +516,7 @@ button:hover {
 
 .list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   column-gap: 14px;
   row-gap: 2px;
   margin-bottom: 100px;
@@ -598,7 +601,7 @@ button:hover {
   flex-wrap: wrap;
   align-items: center;
   gap: 4px;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .tool .dot {
@@ -643,7 +646,6 @@ button:hover {
 
 input[type="file"] {
   font-family: inherit;
-  color: #474747;
   padding: 8px;
   border-radius: 6px;
 }
@@ -660,7 +662,6 @@ input[type="file"]::file-selector-button {
 }
 
 input[type="file"]::file-selector-button:hover {
-  color: #474747;
   background: #fff;
 }
 
