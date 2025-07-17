@@ -7,10 +7,6 @@ export default function Navbar() {
     const [requestOpen, isRequestOpen] = useState(false);
     const [isDark, setIsDark] = useState(false);
 
-    const handleDonation = () => {
-        console.log("Donation clicked!")
-    }
-
     const handleRequestAiTool = () => {
         isRequestOpen(true);
     }
@@ -23,7 +19,6 @@ export default function Navbar() {
   return (
     <header>
         <div className='container'>
-   
             <div className="top">
                 <nav className="nav">
                     <div className="hello">
@@ -49,9 +44,6 @@ export default function Navbar() {
                                 <span>Did we miss any tool?</span>
                                 </a>
                                 {requestOpen && <RequestAiTool onClose={() => isRequestOpen(false)} /> }
-                            </div>
-                            <div className="donation">
-                                <button className="donate" onClick={handleDonation}>Donate</button>
                             </div>
                         </div>
                     </div>
