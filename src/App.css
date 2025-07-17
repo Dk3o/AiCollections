@@ -487,10 +487,8 @@ button,
   height: 30px;
   align-items: center;
   border-radius: 50%;
-  position: absolute;
-  top: -44px;
-  right: -50px;
   margin: 5px;
+  position: relative;
   z-index: 999;
 }
 
