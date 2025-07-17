@@ -45,16 +45,16 @@ export default function Navbar() {
                                 </a>
                                 {requestOpen && <RequestAiTool onClose={() => isRequestOpen(false)} /> }
                             </div>
+                            <div className="theme">
+                                <button 
+                                    className={`toggle-btn ${isDark ? "btn-light" : "btn-dark"}`}  
+                                    onClick={toggleTheme}
+                                    aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+                                >
+                                    {isDark ? <Sun /> : <Moon color='#fff' />}
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div className="theme">
-                        <button 
-                            className={`toggle-btn ${isDark ? "btn-light" : "btn-dark"}`}  
-                            onClick={toggleTheme}
-                            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-                        >
-                            {isDark ? <Sun /> : <Moon color='#fff' />}
-                        </button>
                     </div>
                 </nav>
             </div>
