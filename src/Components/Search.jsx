@@ -95,7 +95,7 @@ export default function Search({ onSearch, onTagFilterChange }) {
           className={`btn-primary-${isExpanded ? 'minimize' : 'expand'}`}
           aria-label={isExpanded ? 'Collapse search tags' : 'Expand search tags'}
         >
-          {isExpanded ? <Icons.ChevronUp size={32} /> : <Icons.ChevronDown size={32} />}
+          {isExpanded ? <Icons.Minus size={36} /> : <Icons.Plus size={36} />}
         </button>
         {selectedTags.length > 0 && (
           <button 
