@@ -2,16 +2,33 @@ import React, { useState, useEffect } from 'react';
 import { X } from "lucide-react";
 
 export default function RequestAiTool({ onClose }) {
-  const maxChars = 420;
-  const [requestTool, setRequestTool] = useState({
+  const tagMaxChar = 16;
+  const descriptionMaxChars = 420;
+
+  const initialToolState = {
     name: '',
     tags: [],
-    tagsInput: '',
     description: '',
     icon: '',
-    });
+  };
 
-  // ✅ Lock scroll when overlay is open
+  const [tagsInput, setTagsInput] = useState('');
+  const [requestTool, setRequestTool] = useState(initialToolState);
+  const [isSending, setIsSending] = useState(false);
+  const [isSent, setIsSent] = useState(false);
+
+  const [touched, setTouched] = useState({
+    name: false,
+    tags: false,
+    description: false,
+  });
+  
+  const [errors, setErrors] = useState({
+    name: false,
+    tags: false,
+    description: false,
+  });
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
 
@@ -22,57 +39,59 @@ export default function RequestAiTool({ onClose }) {
 
   const handleRequestToolName = (e) => {
     const value = e.target.value;
-console.log(value);
     setRequestTool({
       ...requestTool,
       name: value
     });
-  
-    console.log(value);
+
+    if (touched.name) {
+      setErrors(
+        (prev) => (
+          { ...prev, name: value.trim() === '' }
+        )
+      );
+    }
   }
+  
 
   const handleRequestToolTagsChange = (e) => {
     const value = e.target.value;
-    const inputSegments = value.split(";").filter(Boolean); // only real tag segments
+    const inputSegments = value.split(";").filter(Boolean);
   
-    // How many tags are already added
     const existingTagCount = requestTool.tags.length;
   
-    // If total would exceed 5, block input
     if (existingTagCount + inputSegments.length > 5) return;
   
-    // All segments must be <= 16 characters
-    const isValid = inputSegments.every((tag) => tag.length <= 16);
+    const isValid = inputSegments.every((tag) => tag.length <= tagMaxChar);
     if (!isValid) return;
   
-    // Allow input update
-    setRequestTool((prev) => ({
-      ...prev,
-      tagsInput: value,
-    }));
+    setTagsInput(value);
   };
 
   const handleRequestTagsKeyDown = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
   
-      const newTags = requestTool.tagsInput
+      const newTags = tagsInput
         .split(";")
         .map((tag) => tag.trim())
         .filter((tag) => tag && tag.length <= 16);
   
       const combinedTags = [...requestTool.tags, ...newTags];
-      
-      // Keep only the first 5 items
       const limitedTags = combinedTags.slice(0, 5);
-  
-      console.log("Updated (limited) tags list:", limitedTags);
   
       setRequestTool((prev) => ({
         ...prev,
         tags: limitedTags,
-        tagsInput: "",
       }));
+
+      setTagsInput("");
+      if (touched.tags) {
+        setErrors((prev) => ({
+          ...prev,
+          tags: limitedTags.length === 0,
+        }));
+      }
     }
   };
   
@@ -84,14 +103,71 @@ console.log(value);
   };
 
   const handleRequestToolDescription = (e) => {
-    const input = e.target.value;
-    if (input.length <= maxChars) {
-      setText(input);
+    const value = e.target.value;
+    if (value.length <= descriptionMaxChars) {
+      setRequestTool({
+        ...requestTool,
+        description: value
+      })
+      if (touched.description) {
+        setErrors(
+          (prev) => (
+            { ...prev, description: value.trim() === '' }
+          )
+        );
+      }
     }
   };
 
-  const handleRequestToolIcon = () => {
-    
+  const handleRequestToolIcon = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+  
+    const allowedTypes = ['image/png', 'image/svg+xml'];
+    if (!allowedTypes.includes(file.type)) {
+      alert('Only PNG and SVG files are allowed.');
+      return;
+    }
+  
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setRequestTool((prev) => ({
+        ...prev,
+        icon: reader.result, // base64 string
+      }));
+    };
+  
+    reader.readAsDataURL(file);
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const newErrors = {
+      name: requestTool.name.trim() === '',
+      tags: requestTool.tags.length === 0,
+      description: requestTool.description.trim() === '',
+    };
+  
+    setErrors(newErrors);
+    setTouched({ name: true, tags: true, description: true });
+  
+    const hasError = Object.values(newErrors).some(Boolean);
+    if (hasError) return;
+  
+    setIsSending(true);
+    setIsSent(false);
+  
+    console.log("Sending:", requestTool);
+  
+    setTimeout(() => {
+      setIsSending(false);
+      setIsSent(true);
+      setRequestTool(initialToolState);
+      setTagsInput('');
+      setTouched({ name: false, tags: false, description: false });
+      setErrors({ name: false, tags: false, description: false });
+    }, 1500);
   }
 
   return (
@@ -101,9 +177,15 @@ console.log(value);
           <X size={20} />
         </button>
         <h2>Request tool</h2>
-        <form className="form">
+        <form 
+          onSubmit={handleSubmit}
+          className="form"
+        >
           <div>
-            <label htmlFor="tool-name">Tool name</label>
+            <label htmlFor="tool-name">
+              {touched.name && errors.name && <span className="error">*</span>}
+              Tool name 
+            </label>
             <input 
               type="text" 
               id="tool-name" 
@@ -111,18 +193,22 @@ console.log(value);
               className='input-text'
               value={requestTool.name}
               onChange={handleRequestToolName}
+              onBlur={() => setTouched((prev) => ({ ...prev, name: true }))}
             />
           </div>
 
           <div>
             <div className='title'>
-            <label htmlFor="tags">Tags</label>
+            <label htmlFor="tags">
+              {touched.tags && errors.tags && <span className="error">*</span>}
+              Tags
+            </label>
             <div className="counter">
               <span className='count'>
                 {(() => {
-                  const segments = requestTool.tagsInput.split(";");
+                  const segments = tagsInput.split(";");
                   const currentTag = segments[segments.length - 1] || "";
-                  const charsLeft = 16 - currentTag.length;
+                  const charsLeft = tagMaxChar - currentTag.length;
                   return `(${charsLeft >= 0 ? charsLeft : 0} characters)`;
                 })()}
               </span>
@@ -134,10 +220,10 @@ console.log(value);
             id="tags" 
             name="tags"
             className='input-text'
-            value={requestTool.tagsInput}
+            value={tagsInput}
             onChange={handleRequestToolTagsChange}
             onKeyDown={handleRequestTagsKeyDown}
-            disabled={requestTool.tags.length >= 5}
+            onBlur={() => setTouched((prev) => ({ ...prev, tags: true }))}
           />
           {requestTool.tags.length > 0 ?
             <div className='banner-container'>
@@ -147,7 +233,9 @@ console.log(value);
                   className='banner'
                 >
                   {tag}
-                  <button onClick={() => handleRemoveTag(idx)}>
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveTag(idx)}>
                     <X size={16} />
                   </button>
                 </div>
@@ -160,9 +248,12 @@ console.log(value);
 
           <div>
             <div className="title">
-              <label htmlFor="description">Description</label>
+              <label htmlFor="description">
+                {touched.description && errors.description && <span className="error">*</span>}
+                Description
+              </label>
               <span className="count">
-                ({maxChars - requestTool.description.length} characters)
+                ({descriptionMaxChars - requestTool.description.length} characters)
               </span>
             </div>
             <textarea
@@ -170,24 +261,49 @@ console.log(value);
               name="description"
               value={requestTool.description}
               onChange={handleRequestToolDescription}
+              onBlur={() => setTouched((prev) => ({ ...prev, description: true }))}
             />
           </div>
 
           <div>
             <label htmlFor="icon" className='custom-file-label'>Upload icon (PNG or SVG)</label>
-            <input 
-              type="file" 
-              id="icon" 
-              name="icon" 
-              accept="image/png, image/svg+xml" 
-              className='file-input' 
-            />
+            <div className='file-upload-holder'>
+              <input 
+                type="file" 
+                id="icon" 
+                name="icon" 
+                accept="image/png, image/svg+xml" 
+                className='file-input' 
+                onChange={handleRequestToolIcon}
+              />
+              {requestTool.icon && (
+                <div className="icon-preview">
+                  <img src={requestTool.icon} alt="Preview" style={{ width: "48px", height: "48px" }} />
+                </div>
+              )}
+            </div>
           </div>
-        </form>
-        <div className='test'>
-          <button className="btn btn-send">Send</button>
-          <button className="btn btn-cancel" onClick={onClose}>Cancel</button>
+          <div className='test'>
+          <button 
+            type="submit" 
+            className="btn btn-send"
+            disabled={isSending}
+          >
+            {isSending ? "Sending..." : "Send"}
+          </button>
+          <button 
+            className="btn btn-cancel"
+            onClick={onClose}
+          >
+            Cancel
+          </button>
         </div>
+        </form>
+        {isSent && (
+            <div className="success-message">
+              ✅ Tool request sent successfully!
+            </div>
+          )}
       </div>
     </div>
   );
