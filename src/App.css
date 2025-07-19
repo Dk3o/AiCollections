@@ -230,7 +230,7 @@ body.dark-mode .btn-send {
 }
 
 .request-ai-tool .form .title .count {
-  font-size: 12px;
+  font-size: 14px;
   font-style: italic;
   letter-spacing: 1px;
   margin-bottom: 6px;
@@ -241,7 +241,7 @@ body.dark-mode .btn-send {
   display: block;
   margin-bottom: 6px;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .request-ai-tool .form .input-text {
@@ -367,6 +367,7 @@ h1 {
 
 .expanded-tags,
 .minimized-tags {
+  position: relative;
   flex-wrap: wrap;
   list-style: none;
   gap: 4px;
@@ -501,6 +502,7 @@ button,
   border-radius: 50%;
   position: absolute;
   top: 50%;
+  transform: translateY(-50%);
 }
 
 .btn-dark,
@@ -724,4 +726,35 @@ input[type="file"]::file-selector-button:hover {
   font-size: 16px;
   position: absolute;
   left: -10px;
+}
+
+.group {
+  position: relative;
+}
+
+.tooltip {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  margin-right: 10px;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: 150%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }

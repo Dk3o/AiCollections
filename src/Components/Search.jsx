@@ -37,11 +37,21 @@ export default function Search({ onSearch, onTagFilterChange }) {
   };
 
   const handleTagClick = (tag) => {
-    const newSelectedTags = selectedTags.includes(tag)
-      ? selectedTags.filter(t => t !== tag)
-      : [...selectedTags, tag];
+  const isSelected = selectedTags.includes(tag);
+
+  if (isSelected) {
+    // Remove tag
+    const newSelectedTags = selectedTags.filter(t => t !== tag);
     setSelectedTags(newSelectedTags);
     onTagFilterChange(newSelectedTags);
+  } else {
+    // Prevent adding more than 5 tags
+    if (selectedTags.length >= 5) return;
+
+    const newSelectedTags = [...selectedTags, tag];
+    setSelectedTags(newSelectedTags);
+    onTagFilterChange(newSelectedTags);
+  }
   };
 
   const handleClearTags = () => {
@@ -90,13 +100,6 @@ export default function Search({ onSearch, onTagFilterChange }) {
             );
           })}
         </ul>
-        <button 
-          onClick={toggleSearchTags} 
-          className={`btn-primary-${isExpanded ? 'minimize' : 'expand'}`}
-          aria-label={isExpanded ? 'Collapse search tags' : 'Expand search tags'}
-        >
-          {isExpanded ? <Icons.Minus size={36} /> : <Icons.Plus size={36} />}
-        </button>
         {selectedTags.length > 0 && (
           <button 
             className="btn-clear-tags" 
@@ -106,6 +109,13 @@ export default function Search({ onSearch, onTagFilterChange }) {
             <Icons.X className="clear-icon" size={20} />
           </button>
         )}
+        <button 
+          onClick={toggleSearchTags} 
+          className={`btn-primary-${isExpanded ? 'minimize' : 'expand'}`}
+          aria-label={isExpanded ? 'Collapse search tags' : 'Expand search tags'}
+        >
+          {isExpanded ? <Icons.Minus size={36} /> : <Icons.Plus size={36} />}
+        </button>
       </div>
     </div>
   );
