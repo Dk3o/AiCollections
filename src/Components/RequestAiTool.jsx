@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X } from "lucide-react";
+import { X, Info } from "lucide-react";
 
 export default function RequestAiTool({ onClose }) {
   const tagMaxChar = 16;
@@ -198,11 +198,12 @@ export default function RequestAiTool({ onClose }) {
           </div>
 
           <div>
-            <div className='title'>
+          <div className='title'>
             <label htmlFor="tags">
               {touched.tags && errors.tags && <span className="error">*</span>}
               Tags
             </label>
+            
             <div className="counter">
               <span className='count'>
                 {(() => {
@@ -215,16 +216,22 @@ export default function RequestAiTool({ onClose }) {
               <span className="count">({requestTool.tags.length}/5)</span>
             </div>
           </div>
-          <input 
-            type="text" 
-            id="tags" 
-            name="tags"
-            className='input-text'
-            value={tagsInput}
-            onChange={handleRequestToolTagsChange}
-            onKeyDown={handleRequestTagsKeyDown}
-            onBlur={() => setTouched((prev) => ({ ...prev, tags: true }))}
-          />
+          <div className="group">
+            <input 
+              type="text" 
+              id="tags" 
+              name="tags"
+              className='input-text'
+              value={tagsInput}
+              onChange={handleRequestToolTagsChange}
+              onKeyDown={handleRequestTagsKeyDown}
+              onBlur={() => setTouched((prev) => ({ ...prev, tags: true }))}
+            />
+            <div class="tooltip">
+              <Info size={18} absoluteStrokeWidth />
+              <span class="tooltiptext">Tooltip text</span>
+            </div>
+          </div>
           {requestTool.tags.length > 0 ?
             <div className='banner-container'>
               {requestTool.tags.map((tag, idx) => (
