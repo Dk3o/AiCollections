@@ -38,7 +38,7 @@ export default function Navbar() {
                             <Link to="/">About</Link>
                             </li>
                         </ul>
-                        <div className="panel">
+                        <div className="panel-header">
                             <div className="request">
                                 <a href="#" onClick={handleRequestAiTool}>
                                 <span>Did we miss any tool?</span>
