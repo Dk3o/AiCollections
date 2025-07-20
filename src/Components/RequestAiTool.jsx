@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { X, Info } from "lucide-react";
 
 export default function RequestAiTool({ onClose }) {
-  const tagMaxChar = 16;
+  const tagMaxChar = 20;
   const descriptionMaxChars = 420;
 
   const initialToolState = {

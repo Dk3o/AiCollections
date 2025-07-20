@@ -533,26 +533,31 @@ button:hover {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 14px;
-  row-gap: 2px;
+  row-gap: 6px;
 }
 
 .list-group-container .tool {
-  height: 58px;
+  height: 64px;
 }
 
 .list-group-container .tool .tool-top {
   display: flex;
   gap: 6px;
+  align-items: center;
 }
 
 .list-group-container .tool img {
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
 }
 
 .list-group-container .tool a {
   text-decoration: none;
   display: inline-block;
+}
+
+.list-group-container .tool .tags {
+  margin-top: 6px;
 }
 
 /* .list .tool a:before {
@@ -608,7 +613,6 @@ button:hover {
   display: flex;
   align-items: center;
   gap: 10px;
-  height: 26px;
 }
 
 .tool a:hover {
