@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useMemo } from "react";
 import { aiData } from "../data/AiData";
 
 export default function AiToolList({ searchTerm, activeTags }) {
-  const paginationSize = 48;
+  const paginationSize = 32;
 
   const [visibleCount, setVisibleCount] = useState(paginationSize);
   const [list, setIsList] = useState(true);
@@ -102,7 +102,11 @@ export default function AiToolList({ searchTerm, activeTags }) {
                         <path d="M1 0.5C0.723858 0.5 0.5 0.723858 0.5 1C0.5 1.27614 0.723858 1.5 1 1.5L1 0.5ZM1 1L1 1.5L11 1.5L11 1L11 0.500001L1 0.5L1 1Z" fill="currentColor"></path>
                       </svg>
                     </div>
-                    <span className="pagination-page">P.{groupIndex+1}</span>
+                    <span className="pagination-page">
+                      <span>page</span>
+                      <span class="dot">•</span>
+                      <span>{groupIndex+1}</span>
+                    </span>
                   </div>
                 )}  
                 </div>
