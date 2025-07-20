@@ -124,6 +124,7 @@ body.dark-mode .btn-send {
 } */
 
 .sort,
+.paging,
 .card .tool,
 .expanded-tags li,
 .minimized-tags li {
@@ -522,6 +523,9 @@ button:hover {
 }
 
 .list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 6px;
   margin-bottom: 100px;
 }
 
@@ -796,7 +800,7 @@ input[type="file"]::file-selector-button:hover {
 
 .pagination-divider-start svg {
   position: absolute;
-  right: 0;
+  right: -5px;
 }
 
 .pagination-divider-range {
@@ -816,14 +820,20 @@ input[type="file"]::file-selector-button:hover {
 .pagination-divider-end svg {
   position: absolute;
   bottom: 0;
-  right: 0;
+  right: -5px;
 }
 
 .pagination-page {
-  position: absolute;
-  top: 50%;
-  left: 4px;
-  transform: translateY(-50%);
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    align-items: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .panel-main {
@@ -841,19 +851,17 @@ input[type="file"]::file-selector-button:hover {
 
 .paging {
   display: flex;
-      /* width: 87px; */
-      height: 42px;
-      align-items: center;
-      border-radius: 6px;
-      /* justify-content: space-evenly; */
-      gap: 6px;
+  height: 42px;
+  align-items: center;
+  border-radius: 6px;
+  gap: 6px;
+  padding: 0 6px;
 }
 
 .paging button {
   height: 36px;
     padding: 0 5px;
     border-radius: 6px;
-    background: rgba(189, 186, 186, 0.5);
     color: #4e4e4e;
 }
 
