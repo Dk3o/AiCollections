@@ -34,7 +34,8 @@ body,
 .search ul li:hover,
 button,
 .btn-light,
-.donate
+.donate,
+.panel-container
 {
   background: #fff;
   background-image: radial-gradient(rgba(0, 0, 0, 0.1) 0.5px, transparent 0);
@@ -52,7 +53,8 @@ body.dark-mode .search ul li:hover,
 body.dark-mode .sort,
 body.dark-mode .btn-cancel,
 body.dark-mode .btn-cross,
-body.dark-mode .btn-clear
+body.dark-mode .btn-clear,
+body.dark-mode .panel-container
 {
   background: #30334d;
   background-image: radial-gradient(rgba(255, 255, 255, 0.1) 0.5px, transparent 0);
@@ -98,7 +100,8 @@ body.dark-mode .tool,
 .btn-clear-tags,
 body.dark-mode .request-ai-tool .form .input-text,
 body.dark-mode .request-ai-tool .form textarea,
-body.dark-mode .file-input
+body.dark-mode .file-input,
+body.darkmode .pagination-divider svg
 {
   color: #fff;
 }
@@ -115,6 +118,10 @@ body.dark-mode .btn-clear-tags {
 body.dark-mode .btn-send {
   background: rgba(14, 109, 231, 0.5);
 }
+
+/* body.dark-mode .pagination-divider svg {
+  stroke: #474747;
+} */
 
 .sort,
 .card .tool,
@@ -155,7 +162,7 @@ body.dark-mode .btn-send {
   text-decoration: underline;
 }
 
-.panel {
+.panel-header {
   display: flex;
   height: inherit;
   align-items: center;
@@ -425,7 +432,6 @@ ul li a.link-tag.active:hover {
   align-items: center;
   border-radius: 6px;
   justify-content: space-evenly;
-  margin-bottom: 32px;
 }
 
 .sort button {
@@ -516,23 +522,35 @@ button:hover {
 }
 
 .list {
+  margin-bottom: 100px;
+}
+
+.list-group {
+  position: relative;
+}
+
+.list-group-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 14px;
   row-gap: 2px;
-  margin-bottom: 100px;
 }
 
-.list .tool {
+.list-group-container .tool {
   height: 58px;
 }
 
-.list .tool img {
+.list-group-container .tool .tool-top {
+  display: flex;
+  gap: 6px;
+}
+
+.list-group-container .tool img {
   width: 18px;
   height: 18px;
 }
 
-.list .tool a {
+.list-group-container .tool a {
   text-decoration: none;
   display: inline-block;
 }
@@ -757,4 +775,111 @@ input[type="file"]::file-selector-button:hover {
 
 .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+
+
+.pagination-divider {
+  display: flex;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+}
+
+.pagination-divider-start {
+  position: relative;
+}
+
+.pagination-divider-start svg {
+  position: absolute;
+  right: 0;
+}
+
+.pagination-divider-range {
+  position: relative;
+  right: 1px;
+}
+
+.pagination-divider-range svg {
+  position: absolute;
+  top: -1px;
+}
+
+.pagination-divider-end {
+  position: relative;
+}
+
+.pagination-divider-end svg {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.pagination-page {
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  transform: translateY(-50%);
+}
+
+.panel-main {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    margin-bottom: 32px;
+
+}
+
+.panel-container {
+  display: inline-flex;
+  gap: 70px;
+}
+
+.paging {
+  display: flex;
+      /* width: 87px; */
+      height: 42px;
+      align-items: center;
+      border-radius: 6px;
+      /* justify-content: space-evenly; */
+      gap: 6px;
+}
+
+.paging button {
+  height: 36px;
+    padding: 0 5px;
+    border-radius: 6px;
+    background: rgba(189, 186, 186, 0.5);
+    color: #4e4e4e;
+}
+
+button.btn-primary.active {
+  color: #3279FE;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: #555;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+  width: 24px;
+  height: 24px;
+}
+
+.spinner .path {
+  stroke: #3279fe;
+  stroke-linecap: round;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
 }
