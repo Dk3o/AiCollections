@@ -227,9 +227,9 @@ export default function RequestAiTool({ onClose }) {
               onKeyDown={handleRequestTagsKeyDown}
               onBlur={() => setTouched((prev) => ({ ...prev, tags: true }))}
             />
-            <div class="tooltip">
+            <div className="tooltip">
               <Info size={18} absoluteStrokeWidth />
-              <span class="tooltiptext">Tooltip text</span>
+              <span className="tooltiptext">Tooltip text</span>
             </div>
           </div>
           {requestTool.tags.length > 0 ?
