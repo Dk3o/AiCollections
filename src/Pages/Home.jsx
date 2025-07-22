@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Navbar from "../Components/Navbar";
 import Search from "../Components/Search";
 import AiToolList from "../Components/AiToolList";
-
+import Footer from "../Components/Footer";
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -21,6 +21,7 @@ export default function Home() {
           activeTags={activeTags}
         />
       </main>
+      <Footer />
     </>
   );
 }

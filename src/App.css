@@ -35,7 +35,8 @@ body,
 button,
 .btn-light,
 .donate,
-.panel-container
+.panel-container,
+.footer-container
 {
   background: #fff;
   background-image: radial-gradient(rgba(0, 0, 0, 0.1) 0.5px, transparent 0);
@@ -54,7 +55,8 @@ body.dark-mode .sort,
 body.dark-mode .btn-cancel,
 body.dark-mode .btn-cross,
 body.dark-mode .btn-clear,
-body.dark-mode .panel-container
+body.dark-mode .panel-container,
+body.dark-mode .footer-container
 {
   background: #30334d;
   background-image: radial-gradient(rgba(255, 255, 255, 0.1) 0.5px, transparent 0);
@@ -894,4 +896,30 @@ button.btn-primary.active {
   100% {
     transform: rotate(360deg);
   }
+}
+
+footer {
+  position: sticky;
+  bottom: 0;
+  height: 48px;
+}
+
+.footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-container {
+  position: relative;
+}
+
+.footer-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(to right, white, rgb(203 203 203), white)
 }

@@ -104,7 +104,7 @@ export default function AiToolList({ searchTerm, activeTags }) {
                     </div>
                     <span className="pagination-page">
                       <span>page</span>
-                      <span class="dot">•</span>
+                      <span className="dot">•</span>
                       <span>{groupIndex+1}</span>
                     </span>
                   </div>
