@@ -74,6 +74,18 @@ export default function AiToolList({ searchTerm, activeTags }) {
             >
               <h2>{tool.name}</h2>
             </a>
+            {!list &&(
+              <div className="tags">
+                {tool.tags.map((tag, i) => (
+                  <React.Fragment key={i}>
+                    <span>{tag}</span>
+                    {i < tool.tags.length - 1 && <span className="dot">•</span>}
+                  </React.Fragment>
+                ))}
+              </div>
+            )}
+          </div>
+          {list && (
             <div className="tags">
               {tool.tags.map((tag, i) => (
                 <React.Fragment key={i}>
@@ -82,7 +94,8 @@ export default function AiToolList({ searchTerm, activeTags }) {
                 </React.Fragment>
               ))}
             </div>
-          </div>
+          )}
+
           {!list && <p>{tool.description}</p>}
         </div>
       ))}
