@@ -121,6 +121,10 @@ body.dark-mode .btn-send {
   background: rgba(14, 109, 231, 0.5);
 }
 
+body.dark-mode .footer-container::before {
+  background: linear-gradient(to right, #30334d, rgb(203 203 203), #30334d);
+}
+
 /* body.dark-mode .pagination-divider svg {
   stroke: #474747;
 } */
@@ -528,7 +532,6 @@ button:hover {
   display: flex;
   flex-direction: column;
   row-gap: 6px;
-  margin-bottom: 100px;
 }
 
 .list-group {
@@ -566,17 +569,20 @@ button:hover {
   margin-top: 6px;
 }
 
-/* .list .tool a:before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-} */
+.card-group {
+  position: relative;
+}
 
-.card {
+.card-group-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
   margin-bottom: 100px;
 }
 
@@ -921,5 +927,28 @@ footer {
   left: 0;
   height: 1px;
   width: 100%;
-  background: linear-gradient(to right, white, rgb(203 203 203), white)
+  background: linear-gradient(to right, white, rgb(203 203 203), white);
+}
+
+
+.pagination-numbers {
+  display: flex;
+  gap: 0.25rem;
+  margin: 50px 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.page-btn {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.page-btn.active {
+  background: #3279fe;
+  color: white;
+  border-color: #3279fe;
 }
