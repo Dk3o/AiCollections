@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useMemo } from "react";
 import { aiData } from "../data/AiData";
 
 export default function AiToolList({ searchTerm, activeTags }) {
-  const getPaginationSize = (isList) => (isList ? 32 : 21);
+  const getPaginationSize = (isList) => (isList ? 32 : 24);
 
   const [scrollMode, setScrollMode] = useState("infinite"); // or "pagination"
   const [currentPage, setCurrentPage] = useState(1);
