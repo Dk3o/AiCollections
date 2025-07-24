@@ -19,16 +19,16 @@ export default function AiToolList({ searchTerm, activeTags }) {
     const filteredTools = useMemo(() => {
       return aiData.filter(tool => {
         const nameMatch = tool.name.toLowerCase().includes(searchTerm);
-        const tags = Array.isArray(tool.tags)
-          ? tool.tags
-          : tool.tags.split(',').map(t => t.trim());
+        const categories = Array.isArray(tool.categories)
+          ? tool.categories
+          : tool.categories.split(',').map(t => t.trim());
     
-        const searchTagMatch = tags.some(tag =>
-          tag.toLowerCase().includes(searchTerm)
+        const searchTagMatch = categories.some(category =>
+          category.toLowerCase().includes(searchTerm)
         );
     
         const selectedTagMatch =
-          activeTags.length === 0 || activeTags.every(tag => tags.includes(tag));
+          activeTags.length === 0 || activeTags.every(category => categories.includes(category));
     
         return (searchTerm ? nameMatch || searchTagMatch : true) && selectedTagMatch;
       });
@@ -66,7 +66,7 @@ export default function AiToolList({ searchTerm, activeTags }) {
       {group.map(tool => (
         <div key={tool.name} className="tool">
           <div className="tool-top">
-            <img src={tool.icon} />
+            {/* <img src={tool.icon} /> */}
             <a
               target={`_blank_${tool.name.replace(/\s+/g, "_")}_${tool.url.length}`}
               href={tool.url}
@@ -75,22 +75,22 @@ export default function AiToolList({ searchTerm, activeTags }) {
               <h2>{tool.name}</h2>
             </a>
             {!list &&(
-              <div className="tags">
-                {tool.tags.map((tag, i) => (
+              <div className="categories">
+                {tool.categories.map((category, i) => (
                   <React.Fragment key={i}>
-                    <span>{tag}</span>
-                    {i < tool.tags.length - 1 && <span className="dot">•</span>}
+                    <span>{category}</span>
+                    {i < tool.categories.length - 1 && <span className="dot">•</span>}
                   </React.Fragment>
                 ))}
               </div>
             )}
           </div>
           {list && (
-            <div className="tags">
-              {tool.tags.map((tag, i) => (
+            <div className="categories">
+              {tool.categories.map((category, i) => (
                 <React.Fragment key={i}>
-                  <span>{tag}</span>
-                  {i < tool.tags.length - 1 && <span className="dot">•</span>}
+                  <span>{category}</span>
+                  {i < tool.categories.length - 1 && <span className="dot">•</span>}
                 </React.Fragment>
               ))}
             </div>

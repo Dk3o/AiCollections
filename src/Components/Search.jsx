@@ -9,12 +9,12 @@ export default function Search({ onSearch, onTagFilterChange }) {
   const [searchCount, setSearchCount] = useState(0);
   const [selectedTags, setSelectedTags] = useState([]);
 
-  const tags = [
+  const categories = [
     ...new Set(
       aiData.flatMap(tool =>
-        Array.isArray(tool.tags)
-          ? tool.tags
-          : tool.tags.split(',').map(tag => tag.trim())
+        Array.isArray(tool.categories)
+          ? tool.categories
+          : tool.categories.split(',').map(category => category.trim())
       )
     )
   ];
@@ -36,19 +36,19 @@ export default function Search({ onSearch, onTagFilterChange }) {
     setIsExpanded(prev => !prev);
   };
 
-  const handleTagClick = (tag) => {
-  const isSelected = selectedTags.includes(tag);
+  const handleTagClick = (category) => {
+  const isSelected = selectedTags.includes(category);
 
   if (isSelected) {
-    // Remove tag
-    const newSelectedTags = selectedTags.filter(t => t !== tag);
+    // Remove category
+    const newSelectedTags = selectedTags.filter(t => t !== category);
     setSelectedTags(newSelectedTags);
     onTagFilterChange(newSelectedTags);
   } else {
-    // Prevent adding more than 5 tags
+    // Prevent adding more than 5 categories
     if (selectedTags.length >= 5) return;
 
-    const newSelectedTags = [...selectedTags, tag];
+    const newSelectedTags = [...selectedTags, category];
     setSelectedTags(newSelectedTags);
     onTagFilterChange(newSelectedTags);
   }
@@ -65,7 +65,7 @@ export default function Search({ onSearch, onTagFilterChange }) {
         <div className="input-with-icon">
           <input
             type="text"
-            placeholder="Search tool..."
+            placeholder={`Search among ${aiData.length} tools...`}
             value={searchValue}
             onChange={handleChange}
           />
@@ -77,24 +77,24 @@ export default function Search({ onSearch, onTagFilterChange }) {
               : <Icons.Search className="search-icon" size={24} />
           }
         </div>
-        <ul className={isExpanded ? 'expanded-tags' : 'minimized-tags'}>
-          {tags.map((tag, index) => {
-            const iconData = tagIcons[tag] || {};
+        <ul className={isExpanded ? 'expanded-categories' : 'minimized-categories'}>
+          {categories.map((category, index) => {
+            const iconData = tagIcons[category] || {};
             const Icon = Icons[iconData.icon] || Icons.Circle;
             const color = iconData.color || "#9CA3AF";
-            const isActive = selectedTags.includes(tag);
+            const isActive = selectedTags.includes(category);
             return (
               <li key={index}>
                 <a
                   href="#"
                   onClick={(e) => {
                     e.preventDefault();
-                    handleTagClick(tag);
+                    handleTagClick(category);
                   }}
-                  className={`link-tag ${isActive ? 'active' : ''}`}
+                  className={`link-category ${isActive ? 'active' : ''}`}
                 >
                   <Icon className="icon" style={{ color }} />
-                  <span>{tag}</span>
+                  <span>{category}</span>
                 </a>
               </li>
             );
@@ -102,9 +102,9 @@ export default function Search({ onSearch, onTagFilterChange }) {
         </ul>
         {selectedTags.length > 0 && (
           <button 
-            className="btn-clear-tags" 
+            className="btn-clear-categories" 
             onClick={handleClearTags}
-            aria-label="Clear tags"
+            aria-label="Clear categories"
           >
             <Icons.X className="clear-icon" size={20} />
           </button>
@@ -112,7 +112,7 @@ export default function Search({ onSearch, onTagFilterChange }) {
         <button 
           onClick={toggleSearchTags} 
           className={`btn-primary-${isExpanded ? 'minimize' : 'expand'}`}
-          aria-label={isExpanded ? 'Collapse search tags' : 'Expand search tags'}
+          aria-label={isExpanded ? 'Collapse search categories' : 'Expand search categories'}
         >
           {isExpanded ? <Icons.Minus size={36} /> : <Icons.Plus size={36} />}
         </button>
