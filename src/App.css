@@ -29,8 +29,8 @@ input[type="file"]::file-selector-button:hover
 
 body,
 .request-ai-tool,
-.expanded-tags,
-.minimized-tags,
+.expanded-categories,
+.minimized-categories,
 .search ul li:hover,
 button,
 .btn-light,
@@ -48,8 +48,8 @@ button,
 /* DARK MODE OVERRIDES */
 body.dark-mode,
 body.dark-mode .request-ai-tool,
-body.dark-mode .expanded-tags,
-body.dark-mode .minimized-tags,
+body.dark-mode .expanded-categories,
+body.dark-mode .minimized-categories,
 body.dark-mode .search ul li:hover,
 body.dark-mode .sort,
 body.dark-mode .btn-cancel,
@@ -71,14 +71,14 @@ body.dark-mode .request-ai-tool .form textarea
   background: rgba(34, 36, 59, 0.5);
 }
 
-body.dark-mode .expanded-tags li,
-body.dark-mode .minimized-tags li,
+body.dark-mode .expanded-categories li,
+body.dark-mode .minimized-categories li,
 body.dark-mode .card .tool
 {
   background: rgba(40, 42, 67, 0.5);
 }
 
-body.dark-mode .expanded-tags {
+body.dark-mode .expanded-categories {
   border-color: #282a43;
 }
 
@@ -97,9 +97,9 @@ body.dark-mode .request-ai-tool .form label,
 body.dark-mode .btn-cancel,
 body.dark-mode .btn-cross,
 body.dark-mode .btn-clear,
-body.dark-mode .link-tag,
+body.dark-mode .link-category,
 body.dark-mode .tool,
-.btn-clear-tags,
+.btn-clear-categories,
 body.dark-mode .request-ai-tool .form .input-text,
 body.dark-mode .request-ai-tool .form textarea,
 body.dark-mode .file-input,
@@ -108,11 +108,11 @@ body.darkmode .pagination-divider svg
   color: #fff;
 }
 
-body.dark-mode .link-tag.active {
+body.dark-mode .link-category.active {
   background-color: rgb(0, 246, 255, 0.2);
 }
 
-body.dark-mode .btn-clear-tags {
+body.dark-mode .btn-clear-categories {
   background: #fff;
   color: #000;
 }
@@ -132,8 +132,8 @@ body.dark-mode .footer-container::before {
 .sort,
 .paging,
 .card .tool,
-.expanded-tags li,
-.minimized-tags li {
+.expanded-categories li,
+.minimized-categories li {
   background: rgba(221, 221, 221, 0.5);
 }
 
@@ -361,7 +361,7 @@ h1 {
   color: #999;
 }
 
-.expanded-tags {
+.expanded-categories {
   display: grid;
   max-height: 400px;
   position: relative;
@@ -374,25 +374,25 @@ h1 {
   grid-template-columns: repeat(4, 1fr);
 }
 
-.minimized-tags {
+.minimized-categories {
   display: flex;
   align-items: center;
 }
 
-.expanded-tags,
-.minimized-tags {
+.expanded-categories,
+.minimized-categories {
   position: relative;
   flex-wrap: wrap;
   list-style: none;
   gap: 4px;
 }
 
-.expanded-tags li,
-.minimized-tags li {
+.expanded-categories li,
+.minimized-categories li {
   border-radius: 6px;
 }
 
-.link-tag {
+.link-category {
   display: flex;
   align-items: center;
   padding: 4px 10px;
@@ -402,21 +402,21 @@ h1 {
   gap: 6px;
 }
 
-.link-tag.active {
+.link-category.active {
   background: rgb(0, 148, 163, 0.5);
   color: #fff;
   border-radius: 6px;
 }
 
-ul li a.link-tag.active:hover {
+ul li a.link-category.active:hover {
   text-decoration: none;
 }
 
-.expanded-tags li {
+.expanded-categories li {
   height: auto;
 }
 
-.link-tag:hover {
+.link-category:hover {
   text-decoration: underline;
 }
 
@@ -507,7 +507,7 @@ button,
   z-index: 999;
 }
 
-.btn-clear-tags {
+.btn-clear-categories {
   display: flex;
   width: 30px;
   height: 30px;
@@ -519,7 +519,7 @@ button,
 }
 
 .btn-dark,
-.btn-clear-tags
+.btn-clear-categories
 {
   background: #494b91;
 }
@@ -565,7 +565,7 @@ button:hover {
   display: inline-block;
 }
 
-.list-group-container .tool .tags {
+.list-group-container .tool .categories {
   margin-top: 6px;
 }
 
@@ -636,7 +636,7 @@ button:hover {
   margin: 0;
 }
 
-.tool .tags {
+.tool .categories {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -706,12 +706,12 @@ input[type="file"]::file-selector-button:hover {
   background: #fff;
 }
 
-.tag-list {
+.category-list {
   list-style-type: disc;
   padding-left: 1rem;
 }
 
-.tag-list .tag {
+.category-list .category {
   margin-bottom: 4px;
 }
 
@@ -797,7 +797,7 @@ input[type="file"]::file-selector-button:hover {
 .pagination-divider {
   display: flex;
   position: absolute;
-  right: 10px;
+  right: -10px;
   top: 0;
   height: 100%;
 }

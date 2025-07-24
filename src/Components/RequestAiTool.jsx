@@ -7,7 +7,7 @@ export default function RequestAiTool({ onClose }) {
 
   const initialToolState = {
     name: '',
-    tags: [],
+    categories: [],
     description: '',
     icon: '',
   };
@@ -19,13 +19,13 @@ export default function RequestAiTool({ onClose }) {
 
   const [touched, setTouched] = useState({
     name: false,
-    tags: false,
+    categories: false,
     description: false,
   });
   
   const [errors, setErrors] = useState({
     name: false,
-    tags: false,
+    categories: false,
     description: false,
   });
 
@@ -58,11 +58,11 @@ export default function RequestAiTool({ onClose }) {
     const value = e.target.value;
     const inputSegments = value.split(";").filter(Boolean);
   
-    const existingTagCount = requestTool.tags.length;
+    const existingTagCount = requestTool.categories.length;
   
     if (existingTagCount + inputSegments.length > 5) return;
   
-    const isValid = inputSegments.every((tag) => tag.length <= tagMaxChar);
+    const isValid = inputSegments.every((category) => category.length <= tagMaxChar);
     if (!isValid) return;
   
     setTagsInput(value);
@@ -74,22 +74,22 @@ export default function RequestAiTool({ onClose }) {
   
       const newTags = tagsInput
         .split(";")
-        .map((tag) => tag.trim())
-        .filter((tag) => tag && tag.length <= 16);
+        .map((category) => category.trim())
+        .filter((category) => category && category.length <= 16);
   
-      const combinedTags = [...requestTool.tags, ...newTags];
+      const combinedTags = [...requestTool.categories, ...newTags];
       const limitedTags = combinedTags.slice(0, 5);
   
       setRequestTool((prev) => ({
         ...prev,
-        tags: limitedTags,
+        categories: limitedTags,
       }));
 
       setTagsInput("");
-      if (touched.tags) {
+      if (touched.categories) {
         setErrors((prev) => ({
           ...prev,
-          tags: limitedTags.length === 0,
+          categories: limitedTags.length === 0,
         }));
       }
     }
@@ -98,7 +98,7 @@ export default function RequestAiTool({ onClose }) {
   const handleRemoveTag = (indexToRemove) => {
     setRequestTool((prev) => ({
       ...prev,
-      tags: prev.tags.filter((_, idx) => idx !== indexToRemove),
+      categories: prev.categories.filter((_, idx) => idx !== indexToRemove),
     }));
   };
 
@@ -145,12 +145,12 @@ export default function RequestAiTool({ onClose }) {
 
     const newErrors = {
       name: requestTool.name.trim() === '',
-      tags: requestTool.tags.length === 0,
+      categories: requestTool.categories.length === 0,
       description: requestTool.description.trim() === '',
     };
   
     setErrors(newErrors);
-    setTouched({ name: true, tags: true, description: true });
+    setTouched({ name: true, categories: true, description: true });
   
     const hasError = Object.values(newErrors).some(Boolean);
     if (hasError) return;
@@ -165,8 +165,8 @@ export default function RequestAiTool({ onClose }) {
       setIsSent(true);
       setRequestTool(initialToolState);
       setTagsInput('');
-      setTouched({ name: false, tags: false, description: false });
-      setErrors({ name: false, tags: false, description: false });
+      setTouched({ name: false, categories: false, description: false });
+      setErrors({ name: false, categories: false, description: false });
     }, 1500);
   }
 
@@ -199,9 +199,9 @@ export default function RequestAiTool({ onClose }) {
 
           <div>
           <div className='title'>
-            <label htmlFor="tags">
-              {touched.tags && errors.tags && <span className="error">*</span>}
-              Tags
+            <label htmlFor="categories">
+              {touched.categories && errors.categories && <span className="error">*</span>}
+              Categories
             </label>
             
             <div className="counter">
@@ -213,33 +213,33 @@ export default function RequestAiTool({ onClose }) {
                   return `(${charsLeft >= 0 ? charsLeft : 0} characters)`;
                 })()}
               </span>
-              <span className="count">({requestTool.tags.length}/5)</span>
+              <span className="count">({requestTool.categories.length}/5)</span>
             </div>
           </div>
           <div className="group">
             <input 
               type="text" 
-              id="tags" 
-              name="tags"
+              id="categories" 
+              name="categories"
               className='input-text'
               value={tagsInput}
               onChange={handleRequestToolTagsChange}
               onKeyDown={handleRequestTagsKeyDown}
-              onBlur={() => setTouched((prev) => ({ ...prev, tags: true }))}
+              onBlur={() => setTouched((prev) => ({ ...prev, categories: true }))}
             />
             <div className="tooltip">
               <Info size={18} absoluteStrokeWidth />
               <span className="tooltiptext">Tooltip text</span>
             </div>
           </div>
-          {requestTool.tags.length > 0 ?
+          {requestTool.categories.length > 0 ?
             <div className='banner-container'>
-              {requestTool.tags.map((tag, idx) => (
+              {requestTool.categories.map((category, idx) => (
                 <div
                   key={idx}
                   className='banner'
                 >
-                  {tag}
+                  {category}
                   <button
                     type="button"
                     onClick={() => handleRemoveTag(idx)}>
