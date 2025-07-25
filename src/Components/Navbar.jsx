@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import LogoLight from '../assets/Logo-light.svg';
+import LogoDark from '../assets/Logo-dark.svg';
 import {Sun, Moon} from "lucide-react";
 import { Link } from 'react-router-dom';
 import RequestAiTool from './RequestAiTool';
@@ -24,7 +26,9 @@ export default function Navbar() {
                     <div className="hello">
                         <div className="logo">
                             <a href="/">
-                                <h1>Ai Collections</h1>
+                                <h1>
+                                    <img src={isDark ? LogoLight : LogoDark} alt="Logo" />
+                                </h1>
                             </a>
                         </div>
                         <ul>
