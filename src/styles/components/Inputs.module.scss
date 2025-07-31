@@ -1,0 +1,212 @@
+
+
+
+.btnClear {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 5px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+}
+
+.badgeContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+
+  & .badge {
+    height: 32px;
+    background-color: #494b91;
+    border-radius: 16px;
+    padding-left: 14px;
+    padding-right: 6px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 500;
+
+    button {
+      background: none;
+      display: flex;
+      color: #fff;
+    }
+  }
+}
+
+.counter {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.tooltip {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  margin-right: 10px;
+
+    & .tooltiptext {
+        visibility: hidden;
+        width: 220px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        top: 150%;
+        left: 50%;
+        margin-left: -60px;
+        font-size: 14px;
+    }
+
+    &:hover {
+        & .tooltiptext {
+            visibility: visible;
+        }
+    } 
+}
+
+.group {
+  position: relative;
+}
+
+.error {
+  color: red;
+  font-size: 16px;
+  position: absolute;
+  left: -10px;
+}
+
+textarea,
+input {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: var(--text-color);
+  
+    &:focus-visible {
+      outline: none;
+    }
+}
+
+textarea {
+  resize: none;
+  width: 100%;
+  height: 200px;
+  padding: 8px;
+  background: var(--form);
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+
+.searchInput {
+  height: 68px;
+  width: 100%;
+  border-radius: 15px;
+  border: none;
+  background: var(--form);
+  padding: 0 50px 0 26px;
+  font-size: 18px;
+  color: var(--text-color);
+  
+  &::placeholder {
+    color: var(--text-color);
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+input[type="file"] {
+  font-family: inherit;
+  padding: 8px;
+  border-radius: 6px;
+  color: var(--text-color);
+}
+
+input[type="file"]::file-selector-button {
+  background: #494b91;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-right: 10px;
+
+  &:hover {
+    background: #fff;
+    color: #474747;
+  }
+}
+
+.inputWithIcon {
+  position: relative;
+  width: 100%;
+}
+
+.searchIcon {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  color: var(--text-color);
+  /* pointer-events: none;
+    */
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.counter {
+  font-size: 14px;
+  font-style: italic;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+label {
+  position: relative;
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.inputText {
+  height: 40px;
+  width: 100%;
+  border-radius: 6px;
+  border: none;
+  background: var(--form);
+  padding: 0 8px;
+  font-weight: 500;
+  flex-grow: 1;
+  min-width: 120px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+
+.fileInput {
+  background: transparent;
+  padding: 0;
+  border: none;
+}

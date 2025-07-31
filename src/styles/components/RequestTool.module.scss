@@ -1,0 +1,167 @@
+// /* styles/components/RequestTool.module.scss */
+// .container {
+//   background: #fff;
+//   background-image: radial-gradient(rgba(0, 0, 0, 0.1) 0.5px, transparent 0);
+//   background-size: 5px 5px;
+//   background-attachment: fixed;
+// }
+
+// .title,
+// .label,
+// .requestLink {
+//   color: #474747;
+// }
+
+// .formInputText,
+// .formTextarea {
+//   :global(body.dark-mode) & {
+//     background: rgba(34, 36, 59, 0.5);
+//     color: #fff;
+//   }
+// }
+
+// :global(body.dark-mode) {
+//   .container {
+//     background: #30334d;
+//     background-image: radial-gradient(rgba(255, 255, 255, 0.1) 0.5px, transparent 0);
+//   }
+
+//   .title,
+//   .label,
+//   .requestLink {
+//     color: #fff;
+//   }
+// }
+
+.requestAiTtoolContainer {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+
+  & .requestAiTool {
+    background: var(--element-bg);
+    background-image: var(--bg-image);
+    background-size: 5px 5px;
+    background-attachment: fixed;
+    position: relative;
+    height: auto;
+    width: 480px;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      text-align: center;
+      margin: 0;
+      color: var(--text-color);
+    }
+
+    & .form {
+      width: 400px;
+      display: flex;
+      margin: 40px auto 20px;
+      gap: 16px;
+      flex-direction: column;
+
+      label {
+        color: var(--text-color);
+      }
+    }
+  }
+}
+
+
+
+// .request-ai-tool .form {
+//   width: 400px;
+//   display: flex;
+//   margin: 40px auto 20px;
+//   gap: 16px;
+//   flex-direction: column;
+// }
+
+// .request-ai-tool .form .title {
+//   display: flex;
+//   align-items: center;
+//   gap: 10px;
+// }
+
+// .request-ai-tool .form .title .count {
+//   font-size: 14px;
+//   font-style: italic;
+//   letter-spacing: 1px;
+//   margin-bottom: 6px;
+// }
+
+// .request-ai-tool .form label {
+//   position: relative;
+//   display: block;
+//   margin-bottom: 6px;
+//   font-weight: 500;
+//   font-size: 18px;
+// }
+
+// .request-ai-tool .form .input-text {
+//   height: 40px;
+//   width: 100%;
+//   border-radius: 6px;
+//   border: none;
+//   background: rgba(189, 186, 186, 0.5);
+//   padding: 0 8px;
+//   font-weight: 500;
+//   flex-grow: 1;
+//   min-width: 120px;
+//   border: none;
+//   outline: none;
+//   font-size: 14px;
+// }
+
+// .request-ai-tool .form .file-input {
+//   background: transparent;
+//   padding: 0;
+//   border: none;
+// }
+
+// .request-ai-tool .form textarea {
+//   resize: none;
+//   width: 100%;
+//   height: 200px;
+//   padding: 8px;
+//   background: rgba(189, 186, 186, 0.5);
+//   border: none;
+//   border-radius: 6px;
+//   font-weight: 500;
+//   letter-spacing: 1px;
+//   line-height: 1.2;
+// }
+
+// .request-ai-tool .form input,
+// .request-ai-tool .form textarea {
+//   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+//     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+// }
+
+// .request-ai-tool .form input:focus-visible,
+// .request-ai-tool .form textarea:focus-visible,
+// .search input:focus-visible {
+//   outline: none;
+// }
+
+.btnCross {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  right: -40px;
+  top: -40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

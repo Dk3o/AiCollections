@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import styles from '../styles/components/RequestTool.module.scss';
 import { X } from "lucide-react";
-import ToolNameInput from './ToolNameInput';
-import CategoriesInput from './CategoriesInput';
-import DescriptionInput from './DescriptionInput';
+import {ToolNameInput, CategoriesInput, DescriptionInput } from './Inputs';
 import IconUploader from './IconUploader';
-import SubmitButtons from './SubmitButtons';
+import {SubmitButtons} from './Buttons';
 import SuccessMessage from './SuccessMessage';
 
 export default function RequestAiTool({ onClose }) {
@@ -145,11 +144,11 @@ export default function RequestAiTool({ onClose }) {
   };
 
   return (
-    <div className="request-ai-tool-container">
-      <div className="request-ai-tool">
-        <button className="btn btn-cross" onClick={onClose}><X size={20} /></button>
+    <div className={styles.requestAiTtoolContainer}>
+      <div className={styles.requestAiTool}>
+        <button className={`btn ${styles.btnCross}`} onClick={onClose}><X size={20} /></button>
         <h2>Request tool</h2>
-        <form onSubmit={handleSubmit} className="form">
+        <form onSubmit={handleSubmit} className={styles.form}>
           <ToolNameInput
             value={requestTool.name}
             onChange={handleRequestToolName}

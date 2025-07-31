@@ -1,0 +1,22 @@
+.themeToggle {
+  position: relative;
+}
+
+.toggleBtn {
+  display: flex;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  border-radius: 50%;
+  margin: 5px;
+  position: relative;
+  z-index: 999;
+}
+
+.btnLight {
+  background: var(--btn-color);
+}
+
+.btnDark {
+    background: var(--btn-color);
+}

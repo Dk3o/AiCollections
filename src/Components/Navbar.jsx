@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import styles from "../styles/components/Navbar.module.scss";
 import RequestAiTool from './RequestAiTool';
 import Logo from './Logo';
 import NavLinks from './NavLinks';
-import RequestButton from './RequestButton';
+import  {RequestButton} from './Buttons';
 import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
@@ -19,22 +20,20 @@ export default function Navbar() {
   };
 
   return (
-    <header>
-      <div className="container">
-        <div className="top">
-          <nav className="nav">
-            <div className="hello">
-              <Logo isDark={isDark} />
-              <NavLinks />
-              <div className="panel-header">
-                <RequestButton onClick={handleRequestAiTool} />
-                {requestOpen && <RequestAiTool onClose={() => setRequestOpen(false)} />}
-                <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
-              </div>
+    <div className="container">
+      <div className={styles.top}>
+        <nav className="nav">
+          <div className={styles.navContainer}>
+            <Logo isDark={isDark} />
+            <NavLinks />
+            <div className={styles.panelHeader}>
+              <RequestButton onClick={handleRequestAiTool} />
+              {requestOpen && <RequestAiTool onClose={() => setRequestOpen(false)} />}
+              <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
             </div>
-          </nav>
-        </div>
+          </div>
+        </nav>
       </div>
-    </header>
+    </div>
   );
 }

@@ -1,0 +1,28 @@
+
+// .input {
+//   color: #474747;
+// }
+
+// .listItemHover {
+//   background: #fff;
+//   background-image: radial-gradient(rgba(0, 0, 0, 0.1) 0.5px, transparent 0);
+//   background-size: 5px 5px;
+//   background-attachment: fixed;
+// }
+
+// :global(body.dark-mode) .input {
+//   background: rgba(34, 36, 59, 0.5);
+//   color: #fff;
+
+//   &::placeholder {
+//     color: #fff;
+//   }
+// }
+
+.search {
+  position: relative;
+
+  // input {
+  //   color: var(--text-color);
+  // }
+}

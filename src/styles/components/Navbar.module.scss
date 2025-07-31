@@ -1,0 +1,43 @@
+// .navListItemLink {
+//   color: #474747;
+// }
+
+// :global(body.dark-mode) .navListItemLink {
+//   color: #fff;
+// }
+
+.top {
+  margin-bottom: 40px;
+}
+
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  ul {
+  display: flex;
+  list-style: none;
+  gap: 18px;
+  padding: 0;
+
+    a {
+      text-decoration: none;
+      color: var(--text-color);
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+
+
+.panelHeader {
+  display: flex;
+  height: inherit;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
