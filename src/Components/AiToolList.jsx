@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { aiData } from "../data/AiData";
+import styles from "../styles/components/AiToolList.module.scss";
 
 export default function AiToolList({ searchTerm, activeTags }) {
   const getPaginationSize = (isList) => (isList ? 32 : 24);
@@ -58,91 +59,90 @@ export default function AiToolList({ searchTerm, activeTags }) {
       return (
         <>
           {chunked.map((group, groupIndex) => (
-  <div key={groupIndex} className={list ? "list-group" : "card-group"}>
-    <div
-      className={list ? "list-group-container" : "card-group-container"}
-      ref={el => (containerRefs.current[groupIndex] = el)}
-    >
-      {group.map(tool => (
-        <div key={tool.name} className="tool">
-          <div className="tool-top">
-            {/* <img src={tool.icon} /> */}
-            <a
-              target={`_blank_${tool.name.replace(/\s+/g, "_")}_${tool.url.length}`}
-              href={tool.url}
-              rel="noopener noreferrer"
-            >
-              <h2>{tool.name}</h2>
-            </a>
-            {!list &&(
-              <div className="categories">
-                {tool.categories.map((category, i) => (
-                  <React.Fragment key={i}>
-                    <span>{category}</span>
-                    {i < tool.categories.length - 1 && <span className="dot">•</span>}
-                  </React.Fragment>
+            <div key={groupIndex} className={list ? styles.listGroup : styles.cardGroup}>
+              <div
+                className={list ? styles.listGroupContainer : styles.cardGroupContainer}
+                ref={el => (containerRefs.current[groupIndex] = el)}
+              >
+                {group.map(tool => (
+                  <div key={tool.name} className={styles.tool}>
+                    <div className={styles.toolTop}>
+                      {/* <img src={tool.icon} /> */}
+                      <a
+                        target={`_blank_${tool.name.replace(/\s+/g, "_")}_${tool.url.length}`}
+                        href={tool.url}
+                        rel="noopener noreferrer"
+                      >
+                        <h2>{tool.name}</h2>
+                      </a>
+                      {!list &&(
+                        <div className={styles.categories}>
+                          {tool.categories.map((category, i) => (
+                            <React.Fragment key={i}>
+                              <span>{category}</span>
+                              {i < tool.categories.length - 1 && <span className={styles.dot}>•</span>}
+                            </React.Fragment>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    {list && (
+                      <div className={styles.categories}>
+                        {tool.categories.map((category, i) => (
+                          <React.Fragment key={i}>
+                            <span>{category}</span>
+                            {i < tool.categories.length - 1 && <span className={styles.dot}>•</span>}
+                          </React.Fragment>
+                        ))}
+                      </div>
+                    )}
+
+                    {!list && <p>{tool.description}</p>}
+                  </div>
                 ))}
               </div>
-            )}
-          </div>
-          {list && (
-            <div className="categories">
-              {tool.categories.map((category, i) => (
-                <React.Fragment key={i}>
-                  <span>{category}</span>
-                  {i < tool.categories.length - 1 && <span className="dot">•</span>}
-                </React.Fragment>
-              ))}
+
+              {/* Show pagination-divider for both views */}
+              {scrollMode === "infinite" && !isFiltered && (
+                <div className={styles.paginationDivider}>
+                  <div className={styles.paginationDividerStart}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="2" viewBox="0 0 11 2" fill="none">
+                      <path d="M1 1.5C0.723858 1.5 0.5 1.27614 0.5 1C0.5 0.723858 0.723858 0.5 1 0.5L1 1.5ZM1 1L1 0.5L11 0.500001L11 1L11 1.5L1 1.5L1 1Z" fill="currentColor"></path>
+                    </svg>
+                  </div>
+                  <div className={styles.paginationDividerLine}>
+                    {containerHeights[groupIndex] && (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="1"
+                        height={containerHeights[groupIndex]}
+                        viewBox={`0 0 1 ${containerHeights[groupIndex]}`}
+                        fill="none"
+                      >
+                        <line
+                          x1="0.5"
+                          y1="2"
+                          x2="0.5"
+                          y2={containerHeights[groupIndex]}
+                          stroke="currentColor"
+                        />
+                      </svg>
+                    )}
+                  </div>
+                  <div className={styles.paginationDividerEnd}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="2" viewBox="0 0 11 2" fill="none">
+                      <path d="M1 0.5C0.723858 0.5 0.5 0.723858 0.5 1C0.5 1.27614 0.723858 1.5 1 1.5L1 0.5ZM1 1L1 1.5L11 1.5L11 1L11 0.500001L1 0.5L1 1Z" fill="currentColor"></path>
+                    </svg>
+                  </div>
+                  <span className={styles.paginationPage}>
+                    <span>page</span>
+                    <span className="dot">•</span>
+                    <span>{groupIndex + 1}</span>
+                  </span>
+                </div>
+              )}
             </div>
-          )}
-
-          {!list && <p>{tool.description}</p>}
-        </div>
-      ))}
-    </div>
-
-    {/* Show pagination-divider for both views */}
-    {scrollMode === "infinite" && !isFiltered && (
-      <div className="pagination-divider">
-        <div className="pagination-divider-start">
-          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="2" viewBox="0 0 11 2" fill="none">
-            <path d="M1 1.5C0.723858 1.5 0.5 1.27614 0.5 1C0.5 0.723858 0.723858 0.5 1 0.5L1 1.5ZM1 1L1 0.5L11 0.500001L11 1L11 1.5L1 1.5L1 1Z" fill="currentColor"></path>
-          </svg>
-        </div>
-        <div className="pagination-divider-range">
-          {containerHeights[groupIndex] && (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="1"
-              height={containerHeights[groupIndex]}
-              viewBox={`0 0 1 ${containerHeights[groupIndex]}`}
-              fill="none"
-            >
-              <line
-                x1="0.5"
-                y1="2"
-                x2="0.5"
-                y2={containerHeights[groupIndex]}
-                stroke="currentColor"
-              />
-            </svg>
-          )}
-        </div>
-        <div className="pagination-divider-end">
-          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="2" viewBox="0 0 11 2" fill="none">
-            <path d="M1 0.5C0.723858 0.5 0.5 0.723858 0.5 1C0.5 1.27614 0.723858 1.5 1 1.5L1 0.5ZM1 1L1 1.5L11 1.5L11 1L11 0.500001L1 0.5L1 1Z" fill="currentColor"></path>
-          </svg>
-        </div>
-        <span className="pagination-page">
-          <span>page</span>
-          <span className="dot">•</span>
-          <span>{groupIndex + 1}</span>
-        </span>
-      </div>
-    )}
-  </div>
-))}
-
+          ))}
         </>
       );
     };
@@ -209,9 +209,9 @@ export default function AiToolList({ searchTerm, activeTags }) {
     
   return (
     <>
-      <div className="panel-main">
-        <div className="panel-container">
-          <div className='sort'>
+      <div className={styles.panelMain}>
+        <div className={styles.panelContainer}>
+          <div className={styles.sort}>
             {/* List View Button */}
             <button
               className="btn-primary"
@@ -260,9 +260,9 @@ export default function AiToolList({ searchTerm, activeTags }) {
               )}
             </button>
           </div>
-          <div className="paging">
+          <div className={styles.paging}>
             <button
-              className={`btn-primary ${scrollMode === "infinite" ? "active" : ""}`}
+              className={`btn btn-primary ${scrollMode === "infinite" ? "active" : ""}`}
               aria-label={scrollMode === "infinite" ? "Infinite scrolling is activated" : "Switch to infinite scrolling"}
               onClick={() => {
                 setScrollMode("infinite");
@@ -287,7 +287,7 @@ export default function AiToolList({ searchTerm, activeTags }) {
         </div>
       </div>
       {list ? (
-        <div className="list">
+        <div className={styles.list}>
           <ToolItems
             tools={toolsToRender}
             containerHeights={containerHeights}
@@ -295,8 +295,8 @@ export default function AiToolList({ searchTerm, activeTags }) {
             activeTags={activeTags}
           />
           {isLoadingMore && (
-            <div className="loader">
-              <svg className="spinner" viewBox="0 0 50 50">
+            <div className={styles.loader}>
+              <svg className={styles.spinner} viewBox="0 0 50 50">
                 <circle
                   className="path"
                   cx="25"
@@ -311,7 +311,7 @@ export default function AiToolList({ searchTerm, activeTags }) {
           )}
         </div>
       ) : (
-        <div className="card">
+        <div className={styles.card}>
           <ToolItems
             tools={toolsToRender}
             containerHeights={containerHeights}
@@ -322,7 +322,7 @@ export default function AiToolList({ searchTerm, activeTags }) {
       )}
 
       {scrollMode === "pagination" && totalPages > 1 && (
-        <div className="pagination-numbers">
+        <div className={styles.paginationNumbers}>
           <button
             disabled={currentPage === 1}
             onClick={() => setCurrentPage(1)}
@@ -343,7 +343,7 @@ export default function AiToolList({ searchTerm, activeTags }) {
             ) : (
               <button
                 key={item}
-                className={`page-btn ${item === currentPage ? "active" : ""}`}
+                className={`${styles.pageBtn} ${item === currentPage ? styles.active : ""}`}
                 onClick={() => setCurrentPage(item)}
               >
                 {item}

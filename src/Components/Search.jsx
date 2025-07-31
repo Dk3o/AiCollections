@@ -1,9 +1,9 @@
+import styles from "../styles/components/Search.module.scss";
 import { useState } from "react";
 import { aiData } from "../data/AiData";
-import SearchInput from "./SearchInput";
+import { SearchInput } from "./Inputs";
 import CategoryList from "./CategoryList";
-import ClearTagsButton from "./ClearTagsButton";
-import ExpandButton from "./ExpandButton";
+import { ClearTagsButton, ExpandButton } from "./Buttons";
 
 export default function Search({ onSearch, onTagFilterChange }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -57,7 +57,7 @@ export default function Search({ onSearch, onTagFilterChange }) {
 
   return (
     <div className="container">
-      <div className="search">
+      <div className={styles.search}>
         <SearchInput
           searchValue={searchValue}
           searchCount={searchCount}

@@ -1,0 +1,23 @@
+// Colors
+$color-text-dark: #474747;
+$color-text-light: #fff;
+$color-dark-bg: #30334d;
+$color-light-bg: #fff;
+$color-accent: #494b91;
+$color-primary: #3279fe;
+$color-gradient-light: rgba(0, 0, 0, 0.1);
+$color-gradient-dark: rgba(255, 255, 255, 0.1);
+
+// Font
+$font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+  Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+// Radius
+$radius: 6px;
+
+// Gradient Background
+@mixin dotted-bg($color) {
+  background-image: radial-gradient($color 0.5px, transparent 0);
+  background-size: 5px 5px;
+  background-attachment: fixed;
+}

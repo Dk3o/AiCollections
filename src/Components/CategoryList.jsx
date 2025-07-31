@@ -1,9 +1,10 @@
+import styles from "../styles/components/CategoryList.module.scss";
 import * as Icons from "lucide-react";
 import { tagIcons } from "../data/tagIcons";
 
 export default function CategoryList({ categories, selectedTags, handleTagClick, isExpanded }) {
   return (
-    <ul className={isExpanded ? "expanded-categories" : "minimized-categories"}>
+    <ul className={isExpanded ? styles.expandedCategories : styles.minimizedCategories}>
       {categories.map((category, index) => {
         const iconData = tagIcons[category] || {};
         const Icon = Icons[iconData.icon] || Icons.Circle;
@@ -18,9 +19,9 @@ export default function CategoryList({ categories, selectedTags, handleTagClick,
                 e.preventDefault();
                 handleTagClick(category);
               }}
-              className={`link-category ${isActive ? "active" : ""}`}
+              className={`${styles.linkCategory} ${isActive ? styles.active : ""}`}
             >
-              <Icon className="icon" style={{ color }} />
+              <Icon className={styles.icon} style={{ color }} />
               <span>{category}</span>
             </a>
           </li>

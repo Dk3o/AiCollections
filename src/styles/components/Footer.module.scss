@@ -1,0 +1,27 @@
+footer {
+  position: sticky;
+  bottom: 0;
+  height: 48px;
+  
+  .footerContainer {
+    background: var(--element-bg);
+    background-image: var(--bg-image);
+    background-size: 5px 5px;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 1px;
+      width: 100%;
+      background: var(--footer-line-gradient);
+    }
+  }
+}
+
+

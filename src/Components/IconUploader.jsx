@@ -1,4 +1,4 @@
-import React from 'react';
+import styles from "../styles/components/IconUploader.module.scss";
 
 export default function IconUploader({ icon, onChange }) {
   return (
@@ -6,17 +6,17 @@ export default function IconUploader({ icon, onChange }) {
       <label htmlFor="icon" className='custom-file-label'>
         Upload icon (PNG or SVG)
       </label>
-      <div className='file-upload-holder'>
+      <div className={styles.fileUploadHolder}>
         <input
           type="file"
           id="icon"
           name="icon"
           accept="image/png, image/svg+xml"
-          className='file-input'
+          className={styles.fileUploadInput}
           onChange={onChange}
         />
         {icon && (
-          <div className="icon-preview">
+          <div className={styles.iconPreview}>
             <img
               src={icon}
               alt="Preview"
