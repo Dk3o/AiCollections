@@ -32,7 +32,11 @@ export default function AiToolList({ searchTerm, activeTags }) {
           activeTags.length === 0 || activeTags.every(category => categories.includes(category));
     
         return (searchTerm ? nameMatch || searchTagMatch : true) && selectedTagMatch;
-      });
+      })
+      .map(tool => ({
+        ...tool,
+        uuid: crypto.randomUUID() // assign a persistent UUID here
+      }));
     }, [searchTerm, activeTags]);
 
     const totalPages = Math.ceil(filteredTools.length / getPaginationSize(list));
@@ -46,7 +50,6 @@ export default function AiToolList({ searchTerm, activeTags }) {
       toolsToRender = filteredTools.slice(start, end);
     }
     
-
     const ToolItems = ({ tools, containerHeights, searchTerm, activeTags }) => {
       containerRefs.current = [];
       const chunked = [];
@@ -65,7 +68,7 @@ export default function AiToolList({ searchTerm, activeTags }) {
                 ref={el => (containerRefs.current[groupIndex] = el)}
               >
                 {group.map(tool => (
-                  <div key={tool.name} className={styles.tool}>
+                  <div key={tool.uuid} className={styles.tool}>
                     <div className={styles.toolTop}>
                       {/* <img src={tool.icon} /> */}
                       <a

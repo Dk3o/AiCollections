@@ -51,7 +51,7 @@ export function ScrollToTopButton() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-  console.log(styles);
+  
   return (
     <button
       className={`${styles.scrollToTop} ${isVisible ? styles.visible : ''}`}
