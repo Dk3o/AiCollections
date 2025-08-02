@@ -1,0 +1,123 @@
+.lorem {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+
+  & .requestAiTtoolContainer {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* background: rgba(0, 0, 0, 0.5); */
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+
+    & .requestAiTool {
+      background: var(--element-bg);
+      background-image: var(--bg-image);
+      background-size: 5px 5px;
+      background-attachment: fixed;
+      position: relative;
+      height: auto;
+      width: 480px;
+      padding: 40px 30px;
+      display: flex;
+      flex-direction: column;
+
+      h2 {
+        text-align: center;
+        color: var(--text-color);
+      }
+
+      & .form {
+        width: 400px;
+        display: flex;
+        margin: 40px auto 20px;
+        gap: 16px;
+        flex-direction: column;
+
+        label {
+          color: var(--text-color);
+        }
+      }
+    }
+  }
+}
+
+.btnCross {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  right: -40px;
+  top: -40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+// @media screen and (min-width: 1267px) {
+//   .requestAiTtoolContainer {
+//   }
+  
+// }
+
+// // Tablet horizontal
+// @media (max-width: 1366px) {
+//   .requestAiTtoolContainer {
+//   }
+// }
+
+// @media screen and (max-width: 1024px) {
+//   .lorem {
+//     & .requestAiTtoolContainer {
+//       & .requestAiTool {
+//         width: 90%; /* Instead of fixed 480px */
+//         padding: 30px 20px;
+
+//         & .form {
+//           width: 100%;
+//         }
+//       }
+//     }
+
+//     .btnCross {
+//       right: -20px;
+//       top: -20px;
+//       width: 32px;
+//       height: 32px;
+//     }
+//   }
+// }
+
+@media screen and (max-width: 425px) {
+  .lorem {
+    & .requestAiTtoolContainer {
+      & .requestAiTool {
+        height: 100%;
+        width: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        .form {
+          width: 100%;
+        }
+      }
+    }
+
+    .btnCross {
+      left: 37px;
+      top: 20px;
+      width: 30px;
+      height: 30px;
+      background-color: var(--btn-color);
+      color: var(--text-color-invert);
+    }
+  }
+}

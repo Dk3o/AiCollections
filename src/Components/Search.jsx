@@ -1,7 +1,9 @@
-import * as Icons from "lucide-react";
-import { aiData } from "../data/AiData";
-import { tagIcons } from "../data/tagIcons";
+import styles from "../styles/components/Search.module.scss";
 import { useState } from "react";
+import { aiData } from "../data/AiData";
+import { SearchInput } from "./Inputs";
+import CategoryList from "./CategoryList";
+import { ClearTagsButton, ExpandButton } from "./Buttons";
 
 export default function Search({ onSearch, onTagFilterChange }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -11,12 +13,12 @@ export default function Search({ onSearch, onTagFilterChange }) {
 
   const categories = [
     ...new Set(
-      aiData.flatMap(tool =>
+      aiData.flatMap((tool) =>
         Array.isArray(tool.categories)
           ? tool.categories
-          : tool.categories.split(',').map(category => category.trim())
-      )
-    )
+          : tool.categories.split(",").map((c) => c.trim())
+      ),
+    ),
   ];
 
   function handleChange(e) {
@@ -26,96 +28,50 @@ export default function Search({ onSearch, onTagFilterChange }) {
     onSearch(value.toLowerCase());
   }
 
-  const handleClear = () => {
-    setSearchCount(0);
+  function handleClear() {
     setSearchValue("");
+    setSearchCount(0);
     onSearch("");
-  };
-
-  const toggleSearchTags = () => {
-    setIsExpanded(prev => !prev);
-  };
-
-  const handleTagClick = (category) => {
-  const isSelected = selectedTags.includes(category);
-
-  if (isSelected) {
-    // Remove category
-    const newSelectedTags = selectedTags.filter(t => t !== category);
-    setSelectedTags(newSelectedTags);
-    onTagFilterChange(newSelectedTags);
-  } else {
-    // Prevent adding more than 5 categories
-    if (selectedTags.length >= 5) return;
-
-    const newSelectedTags = [...selectedTags, category];
-    setSelectedTags(newSelectedTags);
-    onTagFilterChange(newSelectedTags);
   }
-  };
 
-  const handleClearTags = () => {
+  function toggleSearchTags() {
+    setIsExpanded((prev) => !prev);
+  }
+
+  function handleTagClick(category) {
+    const isSelected = selectedTags.includes(category);
+    const updatedTags = isSelected
+      ? selectedTags.filter((t) => t !== category)
+      : selectedTags.length < 5
+        ? [...selectedTags, category]
+        : selectedTags;
+
+    setSelectedTags(updatedTags);
+    onTagFilterChange(updatedTags);
+  }
+
+  function handleClearTags() {
     setSelectedTags([]);
     onTagFilterChange([]);
   }
 
   return (
     <div className="container">
-      <div className="search">
-        <div className="input-with-icon">
-          <input
-            type="text"
-            placeholder={`Search among ${aiData.length} tools...`}
-            value={searchValue}
-            onChange={handleChange}
-          />
-          {
-            searchCount > 0 ?
-              <button className="btn-clear" onClick={handleClear}>
-                <Icons.X className="clear-icon" size={20} />
-              </button>
-              : <Icons.Search className="search-icon" size={24} />
-          }
-        </div>
-        <ul className={isExpanded ? 'expanded-categories' : 'minimized-categories'}>
-          {categories.map((category, index) => {
-            const iconData = tagIcons[category] || {};
-            const Icon = Icons[iconData.icon] || Icons.Circle;
-            const color = iconData.color || "#9CA3AF";
-            const isActive = selectedTags.includes(category);
-            return (
-              <li key={index}>
-                <a
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleTagClick(category);
-                  }}
-                  className={`link-category ${isActive ? 'active' : ''}`}
-                >
-                  <Icon className="icon" style={{ color }} />
-                  <span>{category}</span>
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-        {selectedTags.length > 0 && (
-          <button 
-            className="btn-clear-categories" 
-            onClick={handleClearTags}
-            aria-label="Clear categories"
-          >
-            <Icons.X className="clear-icon" size={20} />
-          </button>
-        )}
-        <button 
-          onClick={toggleSearchTags} 
-          className={`btn-primary-${isExpanded ? 'minimize' : 'expand'}`}
-          aria-label={isExpanded ? 'Collapse search categories' : 'Expand search categories'}
-        >
-          {isExpanded ? <Icons.Minus size={36} /> : <Icons.Plus size={36} />}
-        </button>
+      <div className={styles.search}>
+        <SearchInput
+          searchValue={searchValue}
+          searchCount={searchCount}
+          handleChange={handleChange}
+          handleClear={handleClear}
+        />
+        <CategoryList
+          categories={categories}
+          selectedTags={selectedTags}
+          handleTagClick={handleTagClick}
+          isExpanded={isExpanded}
+        />
+        {selectedTags.length > 0 && <ClearTagsButton onClick={handleClearTags} />}
+        <ExpandButton isExpanded={isExpanded} toggle={toggleSearchTags} />
       </div>
     </div>
   );

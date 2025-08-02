@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { aiData } from "../data/AiData";
+import styles from "../styles/components/AiToolList.module.scss";
 
 export default function AiToolList({ searchTerm, activeTags }) {
   const getPaginationSize = (isList) => (isList ? 32 : 24);
@@ -31,7 +32,11 @@ export default function AiToolList({ searchTerm, activeTags }) {
           activeTags.length === 0 || activeTags.every(category => categories.includes(category));
     
         return (searchTerm ? nameMatch || searchTagMatch : true) && selectedTagMatch;
-      });
+      })
+      .map(tool => ({
+        ...tool,
+        uuid: crypto.randomUUID() // assign a persistent UUID here
+      }));
     }, [searchTerm, activeTags]);
 
     const totalPages = Math.ceil(filteredTools.length / getPaginationSize(list));
@@ -45,7 +50,6 @@ export default function AiToolList({ searchTerm, activeTags }) {
       toolsToRender = filteredTools.slice(start, end);
     }
     
-
     const ToolItems = ({ tools, containerHeights, searchTerm, activeTags }) => {
       containerRefs.current = [];
       const chunked = [];
@@ -58,91 +62,90 @@ export default function AiToolList({ searchTerm, activeTags }) {
       return (
         <>
           {chunked.map((group, groupIndex) => (
-  <div key={groupIndex} className={list ? "list-group" : "card-group"}>
-    <div
-      className={list ? "list-group-container" : "card-group-container"}
-      ref={el => (containerRefs.current[groupIndex] = el)}
-    >
-      {group.map(tool => (
-        <div key={tool.name} className="tool">
-          <div className="tool-top">
-            {/* <img src={tool.icon} /> */}
-            <a
-              target={`_blank_${tool.name.replace(/\s+/g, "_")}_${tool.url.length}`}
-              href={tool.url}
-              rel="noopener noreferrer"
-            >
-              <h2>{tool.name}</h2>
-            </a>
-            {!list &&(
-              <div className="categories">
-                {tool.categories.map((category, i) => (
-                  <React.Fragment key={i}>
-                    <span>{category}</span>
-                    {i < tool.categories.length - 1 && <span className="dot">•</span>}
-                  </React.Fragment>
+            <div key={groupIndex} className={list ? styles.listGroup : styles.cardGroup}>
+              <div
+                className={list ? styles.listGroupContainer : styles.cardGroupContainer}
+                ref={el => (containerRefs.current[groupIndex] = el)}
+              >
+                {group.map(tool => (
+                  <div key={tool.uuid} className={styles.tool}>
+                    <div className={styles.toolTop}>
+                      {/* <img src={tool.icon} /> */}
+                      <a
+                        target={`_blank_${tool.name.replace(/\s+/g, "_")}_${tool.url.length}`}
+                        href={tool.url}
+                        rel="noopener noreferrer"
+                      >
+                        <h2>{tool.name}</h2>
+                      </a>
+                      {!list &&(
+                        <div className={styles.categories}>
+                          {tool.categories.map((category, i) => (
+                            <React.Fragment key={i}>
+                              <span>{category}</span>
+                              {i < tool.categories.length - 1 && <span className={styles.dot}>•</span>}
+                            </React.Fragment>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    {list && (
+                      <div className={styles.categories}>
+                        {tool.categories.map((category, i) => (
+                          <React.Fragment key={i}>
+                            <span>{category}</span>
+                            {i < tool.categories.length - 1 && <span className={styles.dot}>•</span>}
+                          </React.Fragment>
+                        ))}
+                      </div>
+                    )}
+
+                    {!list && <p>{tool.description}</p>}
+                  </div>
                 ))}
               </div>
-            )}
-          </div>
-          {list && (
-            <div className="categories">
-              {tool.categories.map((category, i) => (
-                <React.Fragment key={i}>
-                  <span>{category}</span>
-                  {i < tool.categories.length - 1 && <span className="dot">•</span>}
-                </React.Fragment>
-              ))}
+
+              {/* Show pagination-divider for both views */}
+              {scrollMode === "infinite" && !isFiltered && (
+                <div className={styles.paginationDivider}>
+                  <div className={styles.paginationDividerStart}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="2" viewBox="0 0 11 2" fill="none">
+                      <path d="M1 1.5C0.723858 1.5 0.5 1.27614 0.5 1C0.5 0.723858 0.723858 0.5 1 0.5L1 1.5ZM1 1L1 0.5L11 0.500001L11 1L11 1.5L1 1.5L1 1Z" fill="currentColor"></path>
+                    </svg>
+                  </div>
+                  <div className={styles.paginationDividerLine}>
+                    {containerHeights[groupIndex] && (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="1"
+                        height={containerHeights[groupIndex]}
+                        viewBox={`0 0 1 ${containerHeights[groupIndex]}`}
+                        fill="none"
+                      >
+                        <line
+                          x1="0.5"
+                          y1="2"
+                          x2="0.5"
+                          y2={containerHeights[groupIndex]}
+                          stroke="currentColor"
+                        />
+                      </svg>
+                    )}
+                  </div>
+                  <div className={styles.paginationDividerEnd}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="2" viewBox="0 0 11 2" fill="none">
+                      <path d="M1 0.5C0.723858 0.5 0.5 0.723858 0.5 1C0.5 1.27614 0.723858 1.5 1 1.5L1 0.5ZM1 1L1 1.5L11 1.5L11 1L11 0.500001L1 0.5L1 1Z" fill="currentColor"></path>
+                    </svg>
+                  </div>
+                  <span className={styles.paginationPage}>
+                    <span>page</span>
+                    <span className="dot">•</span>
+                    <span>{groupIndex + 1}</span>
+                  </span>
+                </div>
+              )}
             </div>
-          )}
-
-          {!list && <p>{tool.description}</p>}
-        </div>
-      ))}
-    </div>
-
-    {/* Show pagination-divider for both views */}
-    {scrollMode === "infinite" && !isFiltered && (
-      <div className="pagination-divider">
-        <div className="pagination-divider-start">
-          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="2" viewBox="0 0 11 2" fill="none">
-            <path d="M1 1.5C0.723858 1.5 0.5 1.27614 0.5 1C0.5 0.723858 0.723858 0.5 1 0.5L1 1.5ZM1 1L1 0.5L11 0.500001L11 1L11 1.5L1 1.5L1 1Z" fill="currentColor"></path>
-          </svg>
-        </div>
-        <div className="pagination-divider-range">
-          {containerHeights[groupIndex] && (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="1"
-              height={containerHeights[groupIndex]}
-              viewBox={`0 0 1 ${containerHeights[groupIndex]}`}
-              fill="none"
-            >
-              <line
-                x1="0.5"
-                y1="2"
-                x2="0.5"
-                y2={containerHeights[groupIndex]}
-                stroke="currentColor"
-              />
-            </svg>
-          )}
-        </div>
-        <div className="pagination-divider-end">
-          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="2" viewBox="0 0 11 2" fill="none">
-            <path d="M1 0.5C0.723858 0.5 0.5 0.723858 0.5 1C0.5 1.27614 0.723858 1.5 1 1.5L1 0.5ZM1 1L1 1.5L11 1.5L11 1L11 0.500001L1 0.5L1 1Z" fill="currentColor"></path>
-          </svg>
-        </div>
-        <span className="pagination-page">
-          <span>page</span>
-          <span className="dot">•</span>
-          <span>{groupIndex + 1}</span>
-        </span>
-      </div>
-    )}
-  </div>
-))}
-
+          ))}
         </>
       );
     };
@@ -209,164 +212,165 @@ export default function AiToolList({ searchTerm, activeTags }) {
     
   return (
     <>
-      <div className="panel-main">
-        <div className="panel-container">
-          <div className='sort'>
-            {/* List View Button */}
-            <button
-              className="btn-primary"
-              onClick={handleList}
-              aria-label="Switch to list view"
-            >
-              {list ? (
-                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-                  <rect width="36" height="36" rx="6" fill="white" />
-                  <path d="M9 13H27" stroke="#3279FE" strokeLinecap="round" />
-                  <path d="M9 18H27" stroke="#3279FE" strokeLinecap="round" />
-                  <path d="M9 23H27" stroke="#3279FE" strokeLinecap="round" />
-                </svg>
-              ) : (
-                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-                  <rect width="36" height="36" rx="6" fill="white" />
-                  <path d="M9 13H27" stroke="#9A9A9A" strokeLinecap="round" />
-                  <path d="M9 18H27" stroke="#9A9A9A" strokeLinecap="round" />
-                  <path d="M9 23H27" stroke="#9A9A9A" strokeLinecap="round" />
-                </svg>
-              )}
-            </button>
-
-            {/* Card/Grid View Button */}
-            <button
-              className="btn-primary"
-              onClick={handleCard}
-              aria-label="Switch to card view"
-            >
-              {!list ? (
-                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-                  <rect width="36" height="36" rx="6" fill="white" />
-                  <rect x="9.5" y="9.5" width="7" height="7" rx="1.5" stroke="#3279FE" />
-                  <rect x="9.5" y="19.5" width="7" height="7" rx="1.5" stroke="#3279FE" />
-                  <rect x="19.5" y="9.5" width="7" height="7" rx="1.5" stroke="#3279FE" />
-                  <rect x="19.5" y="19.5" width="7" height="7" rx="1.5" stroke="#3279FE" />
-                </svg>
-              ) : (
-                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-                  <rect width="36" height="36" rx="6" fill="white" />
-                  <rect x="9.5" y="9.5" width="7" height="7" rx="1.5" stroke="#9A9A9A" />
-                  <rect x="9.5" y="19.5" width="7" height="7" rx="1.5" stroke="#9A9A9A" />
-                  <rect x="19.5" y="9.5" width="7" height="7" rx="1.5" stroke="#9A9A9A" />
-                  <rect x="19.5" y="19.5" width="7" height="7" rx="1.5" stroke="#9A9A9A" />
-                </svg>
-              )}
-            </button>
-          </div>
-          <div className="paging">
-            <button
-              className={`btn-primary ${scrollMode === "infinite" ? "active" : ""}`}
-              aria-label={scrollMode === "infinite" ? "Infinite scrolling is activated" : "Switch to infinite scrolling"}
-              onClick={() => {
-                setScrollMode("infinite");
-                setVisibleCount(getPaginationSize(list));
-              }}
-            >
-              Infinite scrolling
-            </button>
-            <button
-              className={`btn-primary ${scrollMode === "pagination" ? "active" : ""}`}
-              aria-label={scrollMode === "pagination" ? "Pagination is activated" : "Switch to pagination"}
-              onClick={() => {
-                setScrollMode("pagination");
-                setCurrentPage(1);
-              }}
-            >
-              Pagination
-            </button>
-            {/* <button className="btn-primary active" aria-label="Switch to list view">Infinity scrolling</button>
-            <button className="btn-primary" aria-label="Switch to card view">Pagination</button> */}
-          </div>
-        </div>
-      </div>
-      {list ? (
-        <div className="list">
-          <ToolItems
-            tools={toolsToRender}
-            containerHeights={containerHeights}
-            searchTerm={searchTerm}
-            activeTags={activeTags}
-          />
-          {isLoadingMore && (
-            <div className="loader">
-              <svg className="spinner" viewBox="0 0 50 50">
-                <circle
-                  className="path"
-                  cx="25"
-                  cy="25"
-                  r="20"
-                  fill="none"
-                  strokeWidth="5"
-                />
-              </svg>
-              <span>Loading more tools...</span>
-            </div>
-          )}
-        </div>
-      ) : (
-        <div className="card">
-          <ToolItems
-            tools={toolsToRender}
-            containerHeights={containerHeights}
-            searchTerm={searchTerm}
-            activeTags={activeTags}
-          />
-        </div>
-      )}
-
-      {scrollMode === "pagination" && totalPages > 1 && (
-        <div className="pagination-numbers">
-          <button
-            disabled={currentPage === 1}
-            onClick={() => setCurrentPage(1)}
-          >
-            First
-          </button>
-
-          <button
-            disabled={currentPage === 1}
-            onClick={() => setCurrentPage(prev => prev - 1)}
-          >
-            Prev
-          </button>
-
-          {getPaginationRange(currentPage, totalPages).map((item, index) => (
-            item === '...' ? (
-              <span key={`dots-${index}`} className="dots">…</span>
-            ) : (
+      <div className={styles.container}>
+        <div className={styles.panelMain}>
+          <div className={styles.panelContainer}>
+            <div className={styles.sort}>
+              {/* List View Button */}
               <button
-                key={item}
-                className={`page-btn ${item === currentPage ? "active" : ""}`}
-                onClick={() => setCurrentPage(item)}
+                className="btn-primary"
+                onClick={handleList}
+                aria-label="Switch to list view"
               >
-                {item}
+                {list ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                    <rect width="36" height="36" rx="6" fill="white" />
+                    <path d="M9 13H27" stroke="#3279FE" strokeLinecap="round" />
+                    <path d="M9 18H27" stroke="#3279FE" strokeLinecap="round" />
+                    <path d="M9 23H27" stroke="#3279FE" strokeLinecap="round" />
+                  </svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                    <rect width="36" height="36" rx="6" fill="white" />
+                    <path d="M9 13H27" stroke="#9A9A9A" strokeLinecap="round" />
+                    <path d="M9 18H27" stroke="#9A9A9A" strokeLinecap="round" />
+                    <path d="M9 23H27" stroke="#9A9A9A" strokeLinecap="round" />
+                  </svg>
+                )}
               </button>
-            )
-          ))}
 
-          <button
-            disabled={currentPage === totalPages}
-            onClick={() => setCurrentPage(prev => prev + 1)}
-          >
-            Next
-          </button>
-
-          <button
-            disabled={currentPage === totalPages}
-            onClick={() => setCurrentPage(totalPages)}
-          >
-            Last
-          </button>
+              {/* Card/Grid View Button */}
+              <button
+                className="btn-primary"
+                onClick={handleCard}
+                aria-label="Switch to card view"
+              >
+                {!list ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                    <rect width="36" height="36" rx="6" fill="white" />
+                    <rect x="9.5" y="9.5" width="7" height="7" rx="1.5" stroke="#3279FE" />
+                    <rect x="9.5" y="19.5" width="7" height="7" rx="1.5" stroke="#3279FE" />
+                    <rect x="19.5" y="9.5" width="7" height="7" rx="1.5" stroke="#3279FE" />
+                    <rect x="19.5" y="19.5" width="7" height="7" rx="1.5" stroke="#3279FE" />
+                  </svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                    <rect width="36" height="36" rx="6" fill="white" />
+                    <rect x="9.5" y="9.5" width="7" height="7" rx="1.5" stroke="#9A9A9A" />
+                    <rect x="9.5" y="19.5" width="7" height="7" rx="1.5" stroke="#9A9A9A" />
+                    <rect x="19.5" y="9.5" width="7" height="7" rx="1.5" stroke="#9A9A9A" />
+                    <rect x="19.5" y="19.5" width="7" height="7" rx="1.5" stroke="#9A9A9A" />
+                  </svg>
+                )}
+              </button>
+            </div>
+            <div className={styles.paging}>
+              <button
+                className={`btn btn-primary ${scrollMode === "infinite" ? "active" : ""}`}
+                aria-label={scrollMode === "infinite" ? "Infinite scrolling is activated" : "Switch to infinite scrolling"}
+                onClick={() => {
+                  setScrollMode("infinite");
+                  setVisibleCount(getPaginationSize(list));
+                }}
+              >
+                Infinite scrolling
+              </button>
+              <button
+                className={`btn-primary ${scrollMode === "pagination" ? "active" : ""}`}
+                aria-label={scrollMode === "pagination" ? "Pagination is activated" : "Switch to pagination"}
+                onClick={() => {
+                  setScrollMode("pagination");
+                  setCurrentPage(1);
+                }}
+              >
+                Pagination
+              </button>
+              {/* <button className="btn-primary active" aria-label="Switch to list view">Infinity scrolling</button>
+              <button className="btn-primary" aria-label="Switch to card view">Pagination</button> */}
+            </div>
+          </div>
         </div>
-      )}
+        {list ? (
+          <div className={styles.list}>
+            <ToolItems
+              tools={toolsToRender}
+              containerHeights={containerHeights}
+              searchTerm={searchTerm}
+              activeTags={activeTags}
+            />
+            {isLoadingMore && (
+              <div className={styles.loader}>
+                <svg className={styles.spinner} viewBox="0 0 50 50">
+                  <circle
+                    className="path"
+                    cx="25"
+                    cy="25"
+                    r="20"
+                    fill="none"
+                    strokeWidth="5"
+                  />
+                </svg>
+                <span>Loading more tools...</span>
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className={styles.card}>
+            <ToolItems
+              tools={toolsToRender}
+              containerHeights={containerHeights}
+              searchTerm={searchTerm}
+              activeTags={activeTags}
+            />
+          </div>
+        )}
 
+        {scrollMode === "pagination" && totalPages > 1 && (
+          <div className={styles.paginationNumbers}>
+            <button
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage(1)}
+            >
+              First
+            </button>
+
+            <button
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage(prev => prev - 1)}
+            >
+              Prev
+            </button>
+
+            {getPaginationRange(currentPage, totalPages).map((item, index) => (
+              item === '...' ? (
+                <span key={`dots-${index}`} className="dots">…</span>
+              ) : (
+                <button
+                  key={item}
+                  className={`${styles.pageBtn} ${item === currentPage ? styles.active : ""}`}
+                  onClick={() => setCurrentPage(item)}
+                >
+                  {item}
+                </button>
+              )
+            ))}
+
+            <button
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage(prev => prev + 1)}
+            >
+              Next
+            </button>
+
+            <button
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage(totalPages)}
+            >
+              Last
+            </button>
+          </div>
+        )}
+      </div>
     </>
   );
 }

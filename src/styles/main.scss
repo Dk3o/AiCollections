@@ -1,0 +1,131 @@
+// @use './variables' as *;
+
+// *,
+// *::before,
+// *::after {
+//   box-sizing: border-box;
+// }
+
+// body {
+//   margin: 0;
+//   padding: 0;
+//   font-family: $font-stack;
+//   line-height: 1;
+//   color: $color-text-dark;
+
+//   &.dark-mode {
+//     background: $color-dark-bg;
+//     @include dotted-bg($color-gradient-dark);
+//     color: #fff;
+
+//     .request-ai-tool,
+//     .expanded-categories,
+//     .minimized-categories,
+//     .search ul li:hover,
+//     .sort,
+//     .btn-cancel,
+//     .btn-cross,
+//     .btn-clear,
+//     .panel-container,
+//     .footer-container {
+//       background: $color-dark-bg;
+//       @include dotted-bg($color-gradient-dark);
+//     }
+
+//     .search input,
+//     .request-ai-tool .form .input-text,
+//     .request-ai-tool .form textarea {
+//       background: rgba(34, 36, 59, 0.5);
+//       color: #fff;
+//     }
+
+//     .expanded-categories li,
+//     .minimized-categories li,
+//     .card .tool {
+//       background: rgba(40, 42, 67, 0.5);
+//     }
+
+  
+
+//     .btn-clear-categories {
+//       background: #fff;
+//       color: #000;
+//     }
+
+//     .btn-send {
+//       background: rgba(14, 109, 231, 0.5);
+//     }
+
+//     .footer-container::before {
+//       background: linear-gradient(to right, $color-dark-bg, rgb(203, 203, 203), $color-dark-bg);
+//     }
+//   }
+// }
+
+// h1,
+// .nav ul li a,
+// .search input,
+// .tool a,
+// .request a,
+// .btn-cancel,
+// .request-ai-tool h2,
+// .request-ai-tool .form label,
+// input[type="file"],
+// input[type="file"]::file-selector-button:hover {
+//   color: $color-text-dark;
+// }
+
+// // Example Nested Structure
+// .nav {
+//   ul {
+//     display: flex;
+//     list-style: none;
+//     gap: 18px;
+//     padding: 0;
+
+//     li {
+//       a {
+//         text-decoration: none;
+
+//         &:hover {
+//           text-decoration: underline;
+//         }
+//       }
+//     }
+//   }
+// }
+
+// .search {
+//   position: relative;
+
+//   .input-with-icon {
+//     position: relative;
+//     width: 100%;
+//   }
+
+//   input {
+//     height: 68px;
+//     width: 100%;
+//     border-radius: 15px;
+//     border: none;
+//     background: rgba(189, 186, 186, 0.5);
+//     padding: 0 50px 0 26px;
+//     font-size: 18px;
+
+//     &::placeholder {
+//       color: #999;
+//     }
+
+//     &:focus-visible {
+//       outline: none;
+//     }
+//   }
+
+//   .search-icon {
+//     position: absolute;
+//     top: 50%;
+//     right: 15px;
+//     transform: translateY(-50%);
+//     color: #888;
+//   }
+// }
