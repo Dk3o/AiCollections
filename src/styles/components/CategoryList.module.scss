@@ -67,6 +67,14 @@
     }
  }
 
-// .link-category.active {
-//   background: rgb(0, 148, 163, 0.5);
-// }
+@media screen and (max-width: 425px) {
+  .expandedCategories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .expandedCategories {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

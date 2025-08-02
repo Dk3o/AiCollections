@@ -101,8 +101,9 @@ input {
 textarea {
   resize: none;
   width: 100%;
-  height: 200px;
-  padding: 8px;
+  min-height: 200px;
+  max-height: 280px;
+  padding: 8px 0 8px 8px;
   background: var(--form);
   border: none;
   border-radius: 6px;

@@ -24,7 +24,31 @@ h1 {
   font-size: 16px;
 }
 
+h2 {
+  font-size: 18px;
+  margin: 0;
+}
+
 .container {
   width: 900px;
   margin: 0 auto;
+}
+
+@media (min-width: 426px) and (max-width: 1024px) {
+  .container {
+    width: 100%;
+    padding: 0 2rem;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .container {
+    width: 100%;
+    padding: 0;
+
+    & .listGroupContainer {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }
