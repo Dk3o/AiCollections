@@ -23,6 +23,7 @@ export default function CategoryList({ categories, selectedTags, handleTagClick,
             >
               <Icon className={styles.icon} style={{ color }} />
               <span>{category}</span>
+              <span className={styles.counter}>{category.length}</span>
             </a>
           </li>
         );

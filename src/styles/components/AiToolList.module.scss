@@ -8,9 +8,9 @@
     height: 42px;
     align-items: center;
     border-radius: 6px;
-    justify-content: space-evenly;
+    justify-content: center;
     background: rgba(221, 221, 221, 0.5);
-
+    gap: 6px;
     
   button{
     width: 36px;
@@ -56,7 +56,7 @@
 
     a {
       text-decoration: none;
-      display: inline-block;
+      display: inline-flex;
       color: var(--text-color);
     }
 
@@ -335,12 +335,12 @@
       & .tool {
 
         & .toolTop {
-          flex-direction: column;
+          justify-content: center;
         }
 
-         & .categories {
-            justify-content: center;
-          }
+        & .categories {
+          justify-content: center;
+        }
       }
     }
 
@@ -353,14 +353,13 @@
           flex-direction: column;
           align-items: center;
 
-          a {
-            display: inline-block;
-            justify-content: center;
-          }
-
           & .categories {
             text-align: center;
           }
+        }
+        & p {
+          font-size: 12px;
+          line-height: 1.2;
         }
       }
     }

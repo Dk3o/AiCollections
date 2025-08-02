@@ -55,6 +55,10 @@
     gap: 6px;
 
     &:hover { text-decoration: underline; }
+
+    & .counter {
+      margin-left: auto;
+    }
 }
 
 .active { 
@@ -68,6 +72,23 @@
  }
 
 @media screen and (max-width: 425px) {
+  .linkCategory {
+    font-size: 12px;
+    padding: 2px 6px;
+
+      & .counter {
+        margin-left: auto;
+        margin-right: 8px;
+        background: var(--background-color);
+      }
+  }
+
+  .expandedCategories {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (min-width: 426px) and (max-width: 767px) {
   .expandedCategories {
     grid-template-columns: repeat(2, 1fr);
   }

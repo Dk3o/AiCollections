@@ -2,6 +2,7 @@ footer {
   position: sticky;
   bottom: 0;
   height: 48px;
+  z-index: 998;
   
   .footerContainer {
     background: var(--element-bg);
