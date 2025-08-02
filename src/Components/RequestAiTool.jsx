@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/components/RequestTool.module.scss';
 import { X } from "lucide-react";
-import {ToolNameInput, CategoriesInput, DescriptionInput } from './Inputs';
+import { ToolNameInput, CategoriesInput, DescriptionInput } from './Inputs';
 import IconUploader from './IconUploader';
-import {SubmitButtons} from './Buttons';
+import { SubmitButtons } from './Buttons';
 import SuccessMessage from './SuccessMessage';
 
 export default function RequestAiTool({ onClose }) {
@@ -144,46 +144,48 @@ export default function RequestAiTool({ onClose }) {
   };
 
   return (
-    <div className={styles.requestAiTtoolContainer}>
-      <div className={styles.requestAiTool}>
-        <button className={`btn ${styles.btnCross}`} onClick={onClose}><X size={20} /></button>
-        <h2>Request tool</h2>
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <ToolNameInput
-            value={requestTool.name}
-            onChange={handleRequestToolName}
-            error={errors.name}
-            touched={touched.name}
-            onBlur={() => setTouched(prev => ({ ...prev, name: true }))}
-          />
-          <CategoriesInput
-            tagsInput={tagsInput}
-            onChange={handleRequestToolTagsChange}
-            onKeyDown={handleRequestTagsKeyDown}
-            categories={requestTool.categories}
-            onRemove={handleRemoveTag}
-            error={errors.categories}
-            touched={touched.categories}
-            onBlur={() => setTouched(prev => ({ ...prev, categories: true }))}
-          />
-          <DescriptionInput
-            value={requestTool.description}
-            onChange={handleRequestToolDescription}
-            maxLength={descriptionMaxChars}
-            error={errors.description}
-            touched={touched.description}
-            onBlur={() => setTouched(prev => ({ ...prev, description: true }))}
-          />
-          <IconUploader
-            icon={requestTool.icon}
-            onChange={handleRequestToolIcon}
-          />
-          <SubmitButtons
-            onCancel={onClose}
-            isSending={isSending}
-          />
-        </form>
-        {isSent && <SuccessMessage />}
+    <div className={styles.lorem}>
+      <div className={styles.requestAiTtoolContainer}>
+        <div className={styles.requestAiTool}>
+          <button className={`btn ${styles.btnCross}`} onClick={onClose}><X size={20} /></button>
+          <h2>Request tool</h2>
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <ToolNameInput
+              value={requestTool.name}
+              onChange={handleRequestToolName}
+              error={errors.name}
+              touched={touched.name}
+              onBlur={() => setTouched(prev => ({ ...prev, name: true }))}
+            />
+            <CategoriesInput
+              tagsInput={tagsInput}
+              onChange={handleRequestToolTagsChange}
+              onKeyDown={handleRequestTagsKeyDown}
+              categories={requestTool.categories}
+              onRemove={handleRemoveTag}
+              error={errors.categories}
+              touched={touched.categories}
+              onBlur={() => setTouched(prev => ({ ...prev, categories: true }))}
+            />
+            <DescriptionInput
+              value={requestTool.description}
+              onChange={handleRequestToolDescription}
+              maxLength={descriptionMaxChars}
+              error={errors.description}
+              touched={touched.description}
+              onBlur={() => setTouched(prev => ({ ...prev, description: true }))}
+            />
+            <IconUploader
+              icon={requestTool.icon}
+              onChange={handleRequestToolIcon}
+            />
+            <SubmitButtons
+              onCancel={onClose}
+              isSending={isSending}
+            />
+          </form>
+          {isSent && <SuccessMessage />}
+        </div>
       </div>
     </div>
   );

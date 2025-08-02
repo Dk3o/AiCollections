@@ -1,3 +1,7 @@
+.container {
+  width: auto;
+}
+
 .sort { 
     display: flex;
     width: 87px;
@@ -124,11 +128,6 @@
     }
   }
   
-  & h2 {
-    font-size: 18px;
-    margin: 0;
-  }
-
   & .categories {
     display: flex;
     flex-wrap: wrap;
@@ -276,4 +275,139 @@
   }
 }
 
+// @media screen and (max-width: 1366px) {
+//   .panelMain,
+//   .list,
+//   .card {
+//     padding: 0 1rem;
+//   }
 
+//   .card {
+
+//     & .toolTop  {
+//       flex-direction: column;
+//       align-items: normal;
+//     }
+
+//     p {
+//       font-size: 12px;
+//     }
+//   }
+
+//   .toolTop,
+//   .paginationPage,
+//   .categories {
+//     font-size: 10px;
+//   }
+
+
+
+//   .paginationPage {
+//     left: 6px;
+//   }
+// }
+
+
+
+@media (max-width: 425px) {
+  /* Styles for portrait tablets */
+
+  #root {
+    padding: 0 1rem;
+  }
+
+  .container {
+    width: 98%;
+    
+    .panelContainer {
+      gap: 6px;
+    }
+
+    & .listGroupContainer,
+    & .cardGroupContainer {
+      display: flex;
+      flex-direction: column;
+
+    }
+
+    .listGroupContainer {
+
+      & .tool {
+
+        & .toolTop {
+          flex-direction: column;
+        }
+
+         & .categories {
+            justify-content: center;
+          }
+      }
+    }
+
+    & .cardGroupContainer {
+      grid-template-columns: repeat(2, 1fr);
+
+      & .tool {
+      
+        & .toolTop {
+          flex-direction: column;
+          align-items: center;
+
+          a {
+            display: inline-block;
+            justify-content: center;
+          }
+
+          & .categories {
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+
+  .paginationDivider {
+    right: -5px;
+
+    & .paginationPage {
+      left: 4px;
+      font-size: 10px;
+      font-weight: 400;
+    }
+  }
+}
+
+@media (min-width: 426px) and (max-width: 767px) {
+
+    .listGroupContainer {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cardGroupContainer {
+      grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Styles for portrait tablets */
+  .container {
+    width: 98%;
+
+    & .listGroupContainer {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    & .cardGroupContainer {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .paginationDivider {
+    right: -5px;
+
+    & .paginationPage {
+      left: 6px;
+      font-size: 10px;
+    }
+  }
+}
