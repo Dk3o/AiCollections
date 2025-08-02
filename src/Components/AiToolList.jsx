@@ -70,12 +70,12 @@ export default function AiToolList({ searchTerm, activeTags }) {
                 {group.map(tool => (
                   <div key={tool.uuid} className={styles.tool}>
                     <div className={styles.toolTop}>
-                      {/* <img src={tool.icon} /> */}
                       <a
                         target={`_blank_${tool.name.replace(/\s+/g, "_")}_${tool.url.length}`}
                         href={tool.url}
                         rel="noopener noreferrer"
                       >
+                        <img src={tool.icon} />
                         <h2>{tool.name}</h2>
                       </a>
                       {!list &&(
