@@ -8,7 +8,7 @@ import { ScrollToTopButton } from './Components/Buttons';
 function App() {
   return(
     <>
-      <Router>
+      <Router basename='/AiCcollections'>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />

@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --outDir docs",
     "test": "vitest run",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build && git add docs && git commit -m \"Deploy to GitHub Pages\" && git push origin main"
   },
   "dependencies": {
     "lucide-react": "^0.525.0",
