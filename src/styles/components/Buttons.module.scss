@@ -84,3 +84,9 @@
   opacity: 1;
   visibility: visible;
 }
+
+@media (max-width: 430px) {
+  .left {
+    left: -20px;
+  }
+}
