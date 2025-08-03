@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { aiData } from "../data/AiData";
 import styles from "../styles/components/AiToolList.module.scss";
+import{ List } from "lucide-react";
 
 export default function AiToolList({ searchTerm, activeTags }) {
   const getPaginationSize = (isList) => (isList ? 32 : 24);
@@ -222,21 +223,7 @@ export default function AiToolList({ searchTerm, activeTags }) {
                 onClick={handleList}
                 aria-label="Switch to list view"
               >
-                {list ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-                    <rect width="36" height="36" rx="6" fill="white" />
-                    <path d="M9 13H27" stroke="#3279FE" strokeLinecap="round" />
-                    <path d="M9 18H27" stroke="#3279FE" strokeLinecap="round" />
-                    <path d="M9 23H27" stroke="#3279FE" strokeLinecap="round" />
-                  </svg>
-                ) : (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-                    <rect width="36" height="36" rx="6" fill="white" />
-                    <path d="M9 13H27" stroke="#9A9A9A" strokeLinecap="round" />
-                    <path d="M9 18H27" stroke="#9A9A9A" strokeLinecap="round" />
-                    <path d="M9 23H27" stroke="#9A9A9A" strokeLinecap="round" />
-                  </svg>
-                )}
+                <List color={list ? "#3279FE" : "#9A9A9A"} size={24} />
               </button>
 
               {/* Card/Grid View Button */}

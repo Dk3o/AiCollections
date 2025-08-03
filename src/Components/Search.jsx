@@ -70,8 +70,15 @@ export default function Search({ onSearch, onTagFilterChange }) {
           handleTagClick={handleTagClick}
           isExpanded={isExpanded}
         />
-        {selectedTags.length > 0 && <ClearTagsButton onClick={handleClearTags} />}
-        <ExpandButton isExpanded={isExpanded} toggle={toggleSearchTags} />
+        {selectedTags.length > 0 && 
+        <ClearTagsButton 
+          onClick={handleClearTags}
+          isExpanded={isExpanded}
+         />}
+         
+        <ExpandButton 
+          isExpanded={isExpanded} 
+          toggle={toggleSearchTags} />
       </div>
     </div>
   );
