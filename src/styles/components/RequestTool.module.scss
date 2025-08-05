@@ -1,5 +1,5 @@
-.lorem {
-  position: absolute;
+.requestToolContainer {
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -7,19 +7,13 @@
   background: rgba(0, 0, 0, 0.5);
   z-index: 999;
 
-  & .requestAiTtoolContainer {
-    display: flex;
+  & .requestToolOverlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    /* background: rgba(0, 0, 0, 0.5); */
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
-    & .requestAiTool {
+    & .requestTool {
       background: var(--element-bg);
       background-image: var(--bg-image);
       background-size: 5px 5px;
@@ -28,8 +22,7 @@
       height: auto;
       width: 480px;
       padding: 40px 30px;
-      display: flex;
-      flex-direction: column;
+      display: inline-block;
 
       h2 {
         text-align: center;
@@ -63,21 +56,21 @@
   justify-content: center;
 }
 // @media screen and (min-width: 1267px) {
-//   .requestAiTtoolContainer {
+//   .requestToolContainer {
 //   }
   
 // }
 
 // // Tablet horizontal
 // @media (max-width: 1366px) {
-//   .requestAiTtoolContainer {
+//   .requestToolContainer {
 //   }
 // }
 
 // @media screen and (max-width: 1024px) {
 //   .lorem {
-//     & .requestAiTtoolContainer {
-//       & .requestAiTool {
+//     & .requestToolContainer {
+//       & .requestTool {
 //         width: 90%; /* Instead of fixed 480px */
 //         padding: 30px 20px;
 
@@ -97,14 +90,16 @@
 // }
 
 @media screen and (max-width: 430px) {
-  .lorem {
-    & .requestAiTtoolContainer {
-      & .requestAiTool {
-        height: 100%;
-        width: 100%;
-        overflow-x: hidden;
-        overflow-y: auto;
-
+  .requestToolContainer {
+    & .requestToolOverlay {
+      width: 100%;
+      height: 100%;
+      
+      & .requestTool {
+        width: inherit;
+        height: inherit;
+        padding: 40px 12px;
+        
         .form {
           width: 100%;
         }
@@ -112,8 +107,8 @@
     }
 
     .btnCross {
-      left: 37px;
-      top: 20px;
+      right: 10px;
+      top: 10px;
       width: 30px;
       height: 30px;
       background-color: var(--btn-color);
