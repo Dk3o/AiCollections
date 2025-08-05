@@ -6,7 +6,7 @@ import IconUploader from './IconUploader';
 import { SubmitButtons } from './Buttons';
 import SuccessMessage from './SuccessMessage';
 
-export default function RequestAiTool({ onClose }) {
+export default function requestTool({ onClose }) {
   const tagMaxChar = 20;
   const descriptionMaxChars = 420;
 
@@ -144,9 +144,9 @@ export default function RequestAiTool({ onClose }) {
   };
 
   return (
-    <div className={styles.lorem}>
-      <div className={styles.requestAiTtoolContainer}>
-        <div className={styles.requestAiTool}>
+    <div className={styles.requestToolContainer}>
+      <div className={styles.requestToolOverlay}>
+        <div className={styles.requestTool}>
           <button className={`btn ${styles.btnCross}`} onClick={onClose}><X size={20} /></button>
           <h2>Request tool</h2>
           <form onSubmit={handleSubmit} className={styles.form}>
