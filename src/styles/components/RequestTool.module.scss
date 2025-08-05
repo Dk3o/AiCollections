@@ -98,8 +98,9 @@
       & .requestTool {
         width: inherit;
         height: inherit;
-        padding: 40px 12px;
-        
+        overflow-y: auto;
+        overflow-x: hidden;
+                
         .form {
           width: 100%;
         }
