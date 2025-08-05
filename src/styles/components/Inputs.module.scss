@@ -169,7 +169,7 @@ input[type="file"]::file-selector-button {
     */
 }
 
-.title {
+.top {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -217,7 +217,7 @@ label {
     & .searchInput {
       height: 44px;
       padding: 0 50px 0 12px;
-      font-size: 12px;
+      font-size: 14px;
     }
 
     svg {
@@ -226,4 +226,22 @@ label {
     }
   }
 
+  .form {
+    label {
+      font-size: 14px;
+    }
+  }
+
+  .counter {
+    & .count {
+      font-size: 12px;
+    }
+  }
+
+  .tooltip {
+    & .tooltiptext {
+      left: unset;
+      right: 0;
+    }
+  }
 }

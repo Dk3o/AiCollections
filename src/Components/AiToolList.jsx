@@ -277,7 +277,11 @@ export default function AiToolList({ searchTerm, activeTags }) {
             </div>
           </div>
         </div>
-        {list ? (
+        {filteredTools.length === 0 ? (
+            <div className={styles.noResults}>
+              <p>No matches found.</p>
+            </div>
+          ) :list ? (
           <div className={styles.list}>
             <ToolItems
               tools={toolsToRender}

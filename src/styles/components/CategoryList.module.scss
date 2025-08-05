@@ -72,6 +72,18 @@
  }
 
 @media screen and (max-width: 430px) {
+
+  .expandedCategories {
+    margin: 8px 0;
+    padding-left: 40px;
+
+  }
+
+  .minimizedCategories {
+    display: none;
+  }
+
+
   .linkCategory {
     font-size: 12px;
     padding: 2px 6px;
@@ -87,6 +99,7 @@
 }
 
 @media (min-width: 426px) and (max-width: 767px) {
+
   .expandedCategories {
     grid-template-columns: repeat(2, 1fr);
   }
