@@ -1,5 +1,11 @@
 .container {
   width: auto;
+  margin-bottom: 110px;
+
+  & .noResults {
+    text-align: center;
+    font-size: 18px;
+  }
 }
 
 .sort { 
@@ -142,6 +148,93 @@
   }
 }
 
+
+
+.panelMain {
+  // background: var(--bg-pattern-overlay);
+  display: inline-block;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  margin-bottom: 32px;
+}
+
+.panelContainer {
+  background: var(--element-bg);
+  background-image: var(--bg-image);
+  background-size: 5px 5px;
+  background-attachment: fixed;
+  display: inline-flex;
+  gap: 70px;
+}
+
+.paging {
+  display: flex;
+  height: 42px;
+  align-items: center;
+  border-radius: 6px;
+  gap: 6px;
+  padding: 0 6px;
+  background: rgba(221, 221, 221, 0.5);
+
+
+  & button {
+    height: 36px;
+    padding: 0 5px;
+    border-radius: 6px;
+    color: #4e4e4e;
+    }
+}
+
+.paginationNumbers {
+  display: flex;
+  gap: 0.25rem;
+  margin-top: 50px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pageBtn {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.active {
+  background: #3279fe;
+  color: var(--text-color);
+  border-color: #3279fe;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+  width: 24px;
+  height: 24px;
+
+  &path {
+    stroke: #3279fe;
+    stroke-linecap: round;
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .paginationDivider {
   display: flex;
   position: absolute;
@@ -190,91 +283,6 @@
   letter-spacing: 1px;
 }
 
-.panelMain {
-  // background: var(--bg-pattern-overlay);
-  display: inline-block;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  margin-bottom: 32px;
-}
-
-.panelContainer {
-  background: var(--element-bg);
-  background-image: var(--bg-image);
-  background-size: 5px 5px;
-  background-attachment: fixed;
-  display: inline-flex;
-  gap: 70px;
-}
-
-.paging {
-  display: flex;
-  height: 42px;
-  align-items: center;
-  border-radius: 6px;
-  gap: 6px;
-  padding: 0 6px;
-  background: rgba(221, 221, 221, 0.5);
-
-
-  & button {
-    height: 36px;
-    padding: 0 5px;
-    border-radius: 6px;
-    color: #4e4e4e;
-    }
-}
-
-.paginationNumbers {
-  display: flex;
-  gap: 0.25rem;
-  margin: 50px 0 60px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.pageBtn {
-  padding: 0.3rem 0.6rem;
-  border: 1px solid #ccc;
-  background: white;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.active {
-  background: #3279fe;
-  color: var(--text-color);
-  border-color: #3279fe;
-}
-
-.loader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-  gap: 0.5rem;
-  font-size: 1rem;
-  color: var(--text-color);
-}
-
-.spinner {
-  animation: spin 1s linear infinite;
-  width: 24px;
-  height: 24px;
-
-  &path {
-    stroke: #3279fe;
-    stroke-linecap: round;
-  }
-}
-
-@keyframes spin {
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 // @media screen and (max-width: 1366px) {
 //   .panelMain,
 //   .list,
@@ -312,12 +320,9 @@
 @media (max-width: 430px) {
   /* Styles for portrait tablets */
 
-  #root {
-    padding: 0 1rem;
-  }
-
   .container {
     width: 98%;
+    padding: 0 1rem;
     
     .panelContainer {
       gap: 6px;

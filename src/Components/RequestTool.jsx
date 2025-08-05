@@ -6,7 +6,7 @@ import IconUploader from './IconUploader';
 import { SubmitButtons } from './Buttons';
 import SuccessMessage from './SuccessMessage';
 
-export default function requestTool({ onClose }) {
+export default function RequestTool({ onClose, isMobileMenuOpen }) {
   const tagMaxChar = 20;
   const descriptionMaxChars = 420;
 
@@ -39,11 +39,13 @@ export default function requestTool({ onClose }) {
     document.documentElement.style.overflow = "hidden";
     document.body.style.touchAction = "none";
     return () => {
+      if(!isMobileMenuOpen) {
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
       document.body.style.touchAction = "";
+      }
     };
-  }, []);
+  }, [isMobileMenuOpen]);
 
   const handleRequestToolName = (e) => {
     const value = e.target.value;

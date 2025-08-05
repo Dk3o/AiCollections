@@ -11,9 +11,14 @@ export default function Home() {
   return (
     <>
       <Header />
-      <Search onSearch={setSearchTerm} onTagFilterChange={setActiveTags} />
+      <Search 
+        onSearch={setSearchTerm} 
+        onTagFilterChange={setActiveTags} 
+      />
       <main>
-        <AiToolList searchTerm={searchTerm} activeTags={activeTags} />
+        <AiToolList 
+          searchTerm={searchTerm} 
+          activeTags={activeTags} />
       </main>
       <Footer />
     </>

@@ -43,16 +43,16 @@ export function CategoriesInput({
 
   return (
     <div>
-      <div className={styles.title}>
+      <div className={styles.top}>
         <label htmlFor="categories">
           {touched && error && <span className={styles.error}>*</span>}
           Categories
         </label>
         <div className={styles.counter}>
-          <span className='count'>
+          <span className={styles.count}>
             ({charsLeft >= 0 ? charsLeft : 0} characters)
           </span>
-          <span className="count">
+          <span className={styles.count}>
             ({categories.length}/{maxTags})
           </span>
         </div>
@@ -101,14 +101,16 @@ export function DescriptionInput({
 }) {
   return (
     <div>
-      <div className={styles.title}>
+      <div className={styles.top}>
         <label htmlFor="description">
           {touched && error && <span className={styles.error}>*</span>}
           Description
         </label>
-        <span className={styles.counter}>
-          ({maxLength - value.length} characters)
-        </span>
+        <div className={styles.counter}>
+          <span className={styles.count}>
+            ({maxLength - value.length} characters)
+          </span>
+        </div>
       </div>
       <textarea
         id="description"

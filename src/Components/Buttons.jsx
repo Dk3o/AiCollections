@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import * as Icons from "lucide-react";
 import styles from '../styles/components/Buttons.module.scss';
 
-export function ClearTagsButton({ onClick, isExpanded }) {
+export function ClearTagsButton({ onClick, isExpanded  }) {
   return (
     <button
-      className={`${styles.btnClearCategories} ${isExpanded ? styles.left : ''}`}
+      className={`
+        ${styles.btnClearCategories} 
+        ${!isExpanded ? styles.left : ''} 
+      `}
       onClick={onClick}
       aria-label="Clear categories"
     >
