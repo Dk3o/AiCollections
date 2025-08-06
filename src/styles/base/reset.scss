@@ -34,14 +34,14 @@ h2 {
   margin: 0 auto;
 }
 
-@media all and (max-width: 430px) {
+@media (max-width: 430px) {
 
   #root {
     padding: 0 1rem;
   }
 }
 
-@media (min-width: 426px) and (max-width: 1024px) {
+@media (min-width: 431px) and (max-width: 1024px) {
   .container {
     width: 100%;
     padding: 0 2rem;

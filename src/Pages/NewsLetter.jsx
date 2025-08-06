@@ -2,12 +2,12 @@ import React from 'react'
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 
-export default function About() {
+export default function NewsLetter() {
   return (
     <>
-      <Header />
-      <h1>About</h1>
-      <Footer />
+        <Header/>
+        <h1>NewsLetter</h1>
+        <Footer />
     </>
-  )
+  );
 }
