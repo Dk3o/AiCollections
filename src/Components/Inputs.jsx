@@ -71,7 +71,7 @@ export function CategoriesInput({
         />
         <div className={styles.tooltip}>
           <Icons.Info size={18} absoluteStrokeWidth />
-          <span className={styles.tooltiptext}>Separate categories with a semicolon (`;`) or press enter.</span>
+          <span className={styles.tooltiptext}>Add category with a semicolon (`;`) at the end or press enter.</span>
         </div>
       </div>
 

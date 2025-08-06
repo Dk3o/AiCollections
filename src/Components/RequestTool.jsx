@@ -55,18 +55,18 @@ export default function RequestTool({ onClose, isMobileMenuOpen }) {
     }
   };
 
-  const handleRequestToolTagsChange = (e) => {
-    const value = e.target.value;
-    const inputSegments = value.split(";").filter(Boolean);
-    const existingTagCount = requestTool.categories.length;
+  // const handleRequestToolTagsChange = (e) => {
+  //   const value = e.target.value;
+  //   const inputSegments = value.split(";").filter(Boolean);
+  //   const existingTagCount = requestTool.categories.length;
 
-    if (existingTagCount + inputSegments.length > 5) return;
+  //   if (existingTagCount + inputSegments.length > 5) return;
 
-    const isValid = inputSegments.every((tag) => tag.length <= tagMaxChar);
-    if (!isValid) return;
+  //   const isValid = inputSegments.every((tag) => tag.length <= tagMaxChar);
+  //   if (!isValid) return;
 
-    setTagsInput(value);
-  };
+  //   setTagsInput(value);
+  // };
 
   const handleRequestTagsKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -87,6 +87,34 @@ export default function RequestTool({ onClose, isMobileMenuOpen }) {
       }
     }
   };
+
+  const handleRequestTagsChange = (e) => {
+  const value = e.target.value;
+
+  // If the user added a semicolon, try to extract tags
+  if (value.includes(";")) {
+    const segments = value
+      .split(";")
+      .map((tag) => tag.trim())
+      .filter((tag) => tag && tag.length <= tagMaxChar);
+
+    if (segments.length > 0) {
+      const availableSlots = 5 - requestTool.categories.length;
+      const newTags = segments.slice(0, availableSlots);
+
+      const combinedTags = [...requestTool.categories, ...newTags].slice(0, 5);
+      setRequestTool(prev => ({ ...prev, categories: combinedTags }));
+
+      // Set the input to empty or to the remaining part (if any)
+      setTagsInput('');
+    } else {
+      // No valid tags, keep typing
+      setTagsInput(value);
+    }
+  } else {
+    setTagsInput(value);
+  }
+};
 
   const handleRemoveTag = (indexToRemove) => {
     setRequestTool(prev => ({
@@ -165,7 +193,7 @@ export default function RequestTool({ onClose, isMobileMenuOpen }) {
             />
             <CategoriesInput
               tagsInput={tagsInput}
-              onChange={handleRequestToolTagsChange}
+              onChange={handleRequestTagsChange}
               onKeyDown={handleRequestTagsKeyDown}
               categories={requestTool.categories}
               onRemove={handleRemoveTag}
