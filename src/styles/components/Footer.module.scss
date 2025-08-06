@@ -3,10 +3,14 @@ footer {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 48px;
+  height: 30px;
   z-index: 997;
   
   .footerContainer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: var(--element-bg);
     background-image: var(--bg-image);
     background-size: 5px 5px;
@@ -15,6 +19,7 @@ footer {
     align-items: center;
     justify-content: center;
     height: inherit;
+    font-size: 12px;
     
     &::before {
       content: "";

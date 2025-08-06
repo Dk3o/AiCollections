@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { aiData } from "../data/AiData";
 import styles from "../styles/components/AiToolList.module.scss";
-import{ List } from "lucide-react";
+import{ List, ChevronLeft, ChevronsLeft, ChevronRight, ChevronsRight } from "lucide-react";
 
 export default function AiToolList({ searchTerm, activeTags }) {
   const getPaginationSize = (isList) => (isList ? 32 : 24);
@@ -182,7 +182,7 @@ export default function AiToolList({ searchTerm, activeTags }) {
     }, [searchTerm, activeTags, list]);
     
     function getPaginationRange(current, total) {
-      const delta = 2; // How many pages to show around current
+      const delta = 1; // How many pages to show around current
       const range = [];
       const rangeWithDots = [];
     
@@ -277,6 +277,51 @@ export default function AiToolList({ searchTerm, activeTags }) {
             </div>
           </div>
         </div>
+        {!list && scrollMode === "pagination" && totalPages > 1 && (
+          <div className={styles.paginationNumbers}>
+            <button
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage(1)}
+            >
+              <ChevronsLeft size={16}/>
+            </button>
+
+            <button
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage(prev => prev - 1)}
+            >
+              <ChevronLeft size={16}/>
+            </button>
+
+            {getPaginationRange(currentPage, totalPages).map((item, index) => (
+              item === '...' ? (
+                <span key={`dots-${index}`} className="dots">…</span>
+              ) : (
+                <button
+                  key={item}
+                  className={`${styles.pageBtn} ${item === currentPage ? styles.active : ""}`}
+                  onClick={() => setCurrentPage(item)}
+                >
+                  {item}
+                </button>
+              )
+            ))}
+
+            <button
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage(prev => prev + 1)}
+            >
+              <ChevronRight size={16}/>
+            </button>
+
+            <button
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage(totalPages)}
+            >
+              <ChevronsRight size={16}/>
+            </button>
+          </div>
+        )}
         {filteredTools.length === 0 ? (
             <div className={styles.noResults}>
               <p>No matches found.</p>

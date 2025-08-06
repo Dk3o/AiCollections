@@ -26,6 +26,11 @@
   }
 }
 
+.list,
+.card {
+  margin: 30px 0;
+}
+
 .list {
   display: flex;
   flex-direction: column;
@@ -189,7 +194,6 @@
 .paginationNumbers {
   display: flex;
   gap: 0.25rem;
-  margin-top: 50px;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -204,7 +208,7 @@
 
 .active {
   background: #3279fe;
-  color: var(--text-color);
+  color: var(--text-color-invert);
   border-color: #3279fe;
 }
 
@@ -322,8 +326,14 @@
   .container {
     padding: 0 1rem;
     
-    .panelContainer {
+    & .panelContainer {
       gap: 6px;
+
+      & .paging {
+        button {
+          font-size: 12px;
+        }
+      }
     }
 
     & .listGroupContainer,
