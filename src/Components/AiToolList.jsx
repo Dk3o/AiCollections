@@ -76,7 +76,7 @@ export default function AiToolList({ searchTerm, activeTags }) {
                         href={tool.url}
                         rel="noopener noreferrer"
                       >
-                        <img src={tool.icon} />
+                        {/* <img src={tool.icon} alt={tool.name}/> */}
                         <h2>{tool.name}</h2>
                       </a>
                       {!list &&(

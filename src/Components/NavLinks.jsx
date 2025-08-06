@@ -1,12 +1,35 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import styles from "../styles/components/NavLinks.module.scss"
 
 export default function NavLinks() {
   return (
     <ul>
-      <li><Link to="/">Search Ai tools</Link></li>
-      <li><Link to="/contact">Contact</Link></li>
-      <li><Link to="/about">About</Link></li>
+      <li>
+        <NavLink 
+          to="/" 
+          end 
+          className={({ isActive }) => isActive ? styles.active : ''}
+        >
+          Search Ai tools
+        </NavLink>
+      </li>
+      <li>
+        <NavLink 
+          to="/contact" 
+          className={({ isActive }) => isActive ? styles.active  : ''}
+        >
+          Contact
+        </NavLink>
+      </li>
+      <li>
+        <NavLink 
+          to="/about" 
+          className={({ isActive }) => isActive ? styles.active  : ''}
+        >
+          About
+        </NavLink>
+      </li>
     </ul>
   );
 }

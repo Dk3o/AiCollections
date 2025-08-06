@@ -1,0 +1,15 @@
+
+  .active {
+    text-decoration: underline !important;
+  }
+
+@media (max-width: 540px) {
+  .active {
+    background: var(--element-bg-invert);
+    background-image: radial-gradient(var(--rgba-invert) 0.5px, transparent 0);
+    background-size: 5px 5px;
+    background-attachment: fixed;
+    color: var(--text-color-invert) !important;
+    text-decoration: none !important;
+  }
+}

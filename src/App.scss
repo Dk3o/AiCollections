@@ -25,7 +25,9 @@
   --footer-line-gradient: linear-gradient(to right, white, rgb(203, 203, 203), white);
   --form: rgba(189, 186, 186, 0.5);
   --element-bg: #fff; 
+  --element-bg-invert: #30334d; 
   --bg-image: radial-gradient(rgba(0, 0, 0, 0.1) 0.5px, transparent 0);
+  --rgba-invert: rgba(255,255,255,0.1); 
 }
 
 body.dark-mode {
@@ -41,7 +43,9 @@ body.dark-mode {
   --form: rgba(34, 36, 59, 0.5);
   --card-overlay: rgba(40, 42, 67, 0.5);
   --element-bg: #30334d;
+  --element-bg-invert: #fff;
   --bg-image: radial-gradient(rgba(255, 255, 255, 0.1) 0.5px, transparent 0);
+  --rgba-invert: rgba(0, 0, 0, 0.1)
 }
 
 body,
