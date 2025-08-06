@@ -3,7 +3,7 @@
     text-decoration: underline !important;
   }
 
-@media (max-width: 540px) {
+@media (max-width: 1024px) {
   .active {
     background: var(--element-bg-invert);
     background-image: radial-gradient(var(--rgba-invert) 0.5px, transparent 0);

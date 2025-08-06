@@ -16,18 +16,26 @@ export default function NavLinks() {
       </li>
       <li>
         <NavLink 
+          to="/about" 
+          className={({ isActive }) => isActive ? styles.active  : ''}
+        >
+          About
+        </NavLink>
+      </li>
+      <li>
+        <NavLink 
           to="/contact" 
           className={({ isActive }) => isActive ? styles.active  : ''}
         >
           Contact
         </NavLink>
       </li>
-      <li>
+            <li>
         <NavLink 
-          to="/about" 
+          to="/newsletter" 
           className={({ isActive }) => isActive ? styles.active  : ''}
         >
-          About
+          Newsletter
         </NavLink>
       </li>
     </ul>
