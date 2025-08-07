@@ -47,7 +47,7 @@ export default function Navbar() {
       {showBanner && (
         <SpecialOfferBanner 
           text="🎉 Special Offer: Get 20% OFF your order!"
-          linkText="Shop Gay"
+          linkText="Shop"
         />
       )}
       <div className="container">
