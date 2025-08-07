@@ -1,0 +1,17 @@
+.specialOfferBanner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #ff4c4c;
+    color: white;
+    text-align: center;
+    padding: 12px 0;
+    font-size: 12px;
+
+    a {
+        color: #fff;
+        text-decoration: underline;
+        margin-left: 10px;
+    }
+}
