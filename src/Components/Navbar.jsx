@@ -4,6 +4,7 @@ import Logo from './Logo'
 import NavLinks from './NavLinks'
 import { RequestButton } from './Buttons'
 import ThemeToggle from './ThemeToggle'
+import { SpecialOfferBanner } from './Banners';
 import { Menu, X } from 'lucide-react'
 
 // Lazy load RequestTool
@@ -14,6 +15,8 @@ export default function Navbar() {
   const [isDark, setIsDark] = useState(false)
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false)
 
+  const showBanner = true;
+
   const handleRequestTool = () => {
     setRequestOpen(true)
   }
@@ -23,9 +26,9 @@ export default function Navbar() {
     document.body.className = isDark ? 'light-mode' : 'dark-mode'
   }
 
-  const openMobileMenu = () => {
-    setMobileMenuOpen(true)
-  }
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -40,36 +43,49 @@ export default function Navbar() {
   }, [isMobileMenuOpen])
 
   return (
-    <div className="container">
-      <div className={styles.top}>
-        <nav className="nav">
-          <div className={styles.navContainer}>
-            <Logo isDark={isDark} />
-            <button className={styles.hamburger} onClick={openMobileMenu} aria-label="Open mobile menu">
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-            <div className={`${styles.navOverlay} ${isMobileMenuOpen ? styles.showMobile : ''}`}>
-              <div className={styles.navContent}>
-                {isMobileMenuOpen && (
-                  <button className={`btn ${styles.btnCross}`} onClick={() => setMobileMenuOpen(false)} aria-label="Close mobile menu">
-                    <X size={20} />
-                  </button>
-                )}
-                <NavLinks />
-                <div className={styles.panelHeader}>
-                  <RequestButton onClick={handleRequestTool} />
-                  {requestOpen && (
-                    <Suspense fallback={<div>Loading Request Tool...</div>}>
-                      <RequestTool onClose={() => setRequestOpen(false)} isMobileMenuOpen={isMobileMenuOpen} />
-                    </Suspense>
-                  )}
-                  <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
+    <>
+      {showBanner && (
+        <SpecialOfferBanner 
+          text="🎉 Special Offer: Get 20% OFF your order!"
+          linkText="Shop Gay"
+        />
+      )}
+      <div className="container">
+        <div className={styles.top}
+        style={showBanner ? { marginTop: '36px' } : {}}
+        >
+          <nav className="nav">
+            <div className={styles.navContainer}>
+              <Logo isDark={isDark} />
+              <button className={styles.hamburger} onClick={toggleMobileMenu} aria-label="Open mobile menu">
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+              <div 
+                className={`${styles.navOverlay} ${isMobileMenuOpen ? styles.showMobile : ''}`}
+                style={showBanner ? { top: '94px' } : {}}
+              >
+                <div className={styles.navContent}>
+                  {/* {isMobileMenuOpen && (
+                    <button className={`btn ${styles.btnCross}`} onClick={() => setMobileMenuOpen(false)} aria-label="Close mobile menu">
+                      <X size={20} />
+                    </button>
+                  )} */}
+                  <NavLinks />
+                  <div className={styles.panelHeader}>
+                    <RequestButton onClick={handleRequestTool} />
+                    {requestOpen && (
+                      <Suspense fallback={<div>Loading Request Tool...</div>}>
+                        <RequestTool onClose={() => setRequestOpen(false)} isMobileMenuOpen={isMobileMenuOpen} />
+                      </Suspense>
+                    )}
+                    <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </nav>
+          </nav>
+        </div>
       </div>
-    </div>
+    </ >
   )
 }

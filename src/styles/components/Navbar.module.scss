@@ -1,6 +1,5 @@
 .top {
-  margin-top: 10px;
-  margin-bottom: 20px;
+  padding: 10px 0;
 }
 
 .navContainer {
@@ -115,7 +114,7 @@
         height: 100%;
         width: 100%;
         background: rgba(0, 0, 0, 0.8);
-        top: 0;
+        top: 58px;
         left: 0;
         right: 0;
         bottom: 0;
@@ -133,13 +132,15 @@
           background-image: var(--bg-image);
           background-size: 5px 5px;
           background-attachment: fixed;
-          padding: 2rem 0;
+          padding-bottom: 2rem;
           display: flex;
-          gap: 0;
+          gap: 1rem;
           flex-direction: column;
 
           ul {
             gap: 0;
+            margin: 0;
+            padding: 0;
 
             a {
               text-decoration: none;

@@ -56,8 +56,8 @@ export default function Search({ onSearch, onTagFilterChange }) {
   }
 
   return (
-    <div className="container">
-      <div className={styles.search}>
+    <div className={styles.search}>
+      <div className="container">
         <SearchInput
           searchValue={searchValue}
           searchCount={searchCount}
