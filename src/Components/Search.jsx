@@ -78,6 +78,7 @@ export default function Search({ onSearch, onTagFilterChange }) {
          
         <ExpandButton 
           isExpanded={isExpanded} 
+          selectedTags={selectedTags}
           toggle={toggleSearchTags} />
       </div>
     </div>

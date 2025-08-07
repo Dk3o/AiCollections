@@ -25,6 +25,22 @@
   background: transparent;
   border: 0;
   color: var(--text-color);
+  position: relative;
+}
+
+.badge {
+  background: #ff4242;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 12px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .btnSend {
@@ -85,14 +101,23 @@
   visibility: visible;
 }
 
+
+@media (max-width: 510px) {
+  .left {
+    display: none;
+  }
+}
+
 @media (max-width: 1024px) {
 
   .btnPrimaryExpand,
   .btnPrimaryMinimize {
     margin-bottom: 0;
   }
-  
-  .left {
+}
+
+@media (min-width: 511px) {
+  .badge {
     display: none;
   }
 }
