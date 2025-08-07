@@ -17,7 +17,8 @@ export function ClearTagsButton({ onClick, isExpanded  }) {
   );
 }
 
-export function ExpandButton({ isExpanded, toggle }) {
+export function ExpandButton({ isExpanded, toggle, selectedTags = [] }) {
+  const hasActiveFilters = selectedTags.length > 0 && !isExpanded;
   return (
     <button
       onClick={toggle}
@@ -25,6 +26,11 @@ export function ExpandButton({ isExpanded, toggle }) {
       aria-label={isExpanded ? "Collapse search categories" : "Expand search categories"}
     >
       {isExpanded ? <Icons.Minus size={36} /> : <Icons.Plus size={36} />}
+      
+      {hasActiveFilters && (
+        <div className={styles.badge}>{selectedTags.length}</div>
+        // <Icons.Filter className={styles.activeFilterIcon} size={16} />
+      )}
     </button>
   );
 }
