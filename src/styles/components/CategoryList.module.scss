@@ -32,7 +32,6 @@
       li {
         border-radius: 6px;
         background: var(--bg-pattern-overlay);
-
       }
 
   }
@@ -62,7 +61,7 @@
     text-decoration: none;
     gap: 6px;
 
-    &:hover { text-decoration: underline; }
+    &:hover span:first-of-type{ text-decoration: underline; }
 
     & .counter {
       margin-left: auto;
