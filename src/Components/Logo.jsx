@@ -6,9 +6,7 @@ export default function Logo({ isDark }) {
   return (
     <div className={styles.logo}>
       <a href="/">
-        <h1>
-          <img src={isDark ? LogoLight : LogoDark} alt="Logo" />
-        </h1>
+        <img src={isDark ? LogoLight : LogoDark} alt="Logo" />
       </a>
     </div>
   );

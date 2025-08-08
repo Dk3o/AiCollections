@@ -72,23 +72,30 @@ export function ScrollToTopButton() {
   );
 }
 
-export function SubmitButtons({ onCancel, isSending }) {
+export function SubmitButton({ 
+  onCancel = false, 
+  loading,
+  type = "submit",
+  hasCancelBtn
+}) {
   return (
     <div className={styles.buttonContainer}>
       <button
-        type="submit"
+        type={type}
         className={`btn ${styles.btnSend}`}
-        disabled={isSending}
+        disabled={loading}
       >
-        {isSending ? "Sending..." : "Send"}
+        {loading ? "Sending..." : "Send"}
       </button>
-      <button
-        type="button"
-        className={`btn ${styles.btnCancel}`}
-        onClick={onCancel}
-      >
-        Cancel
-      </button>
+      { hasCancelBtn && (
+        <button
+          type="button"
+          className={`btn ${styles.btnCancel}`}
+          onClick={onCancel}
+        >
+          Cancel
+        </button>
+      )}
     </div>
   );
 }

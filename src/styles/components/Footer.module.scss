@@ -20,14 +20,15 @@ footer {
     justify-content: center;
     height: inherit;
     font-size: 12px;
+    z-index: inherit;
     
     &::before {
       content: "";
       position: absolute;
       top: 0;
-      left: 0;
       height: 1px;
-      width: 100%;
+      width: 50%;
+      /* margin: 0 auto; */
       background: var(--footer-line-gradient);
     }
   }

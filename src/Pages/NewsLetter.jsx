@@ -8,9 +8,7 @@ export default function NewsLetter() {
     <>
         <Header/>
         <h1>Newsletter</h1>
-        
-   
-        <div className={styles.container}>
+        <div className={`${styles.container} page`}>
           <p>
             Nisi aliquip minim voluptate enim enim exercitation aliqua. Magna consequat culpa proident tempor aute nostrud deserunt aute aliquip et nostrud. Proident laboris fugiat sit sunt eiusmod veniam id dolore. Eiusmod excepteur Lorem do laborum consectetur tempor veniam proident deserunt duis tempor cupidatat sint nulla.
           </p>
