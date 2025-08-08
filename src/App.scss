@@ -20,13 +20,13 @@
   --background-color-invert: #474747;
   --active-category: rgb(0, 148, 163, 0.5);
   --btn-color: #494b91;
-  --bg-pattern: #fff radial-gradient(rgba(0, 0, 0, 0.1) 0.5px, transparent 0) fixed / 5px 5px;
+  --bg-pattern: #fff radial-gradient(rgba(0, 0, 0, 0.11) 0.5px, transparent 0) fixed / 5px 5px;
   --bg-pattern-overlay: rgba(221, 221, 221, 0.5);
-  --footer-line-gradient: linear-gradient(to right, white, rgb(203, 203, 203), white);
+  --footer-line-gradient: linear-gradient(to right, white, rgb(139, 139, 139), white);
   --form: rgba(189, 186, 186, 0.5);
   --element-bg: #fff; 
   --element-bg-invert: #30334d; 
-  --bg-image: radial-gradient(rgba(0, 0, 0, 0.1) 0.5px, transparent 0);
+  --bg-image: radial-gradient(rgba(0, 0, 0, 0.11) 0.5px, transparent 0);
   --bg-image-invert: radial-gradient(rgba(255, 255, 255, 0.1) 0.5px, transparent 0);
   --rgba-invert: rgba(255,255,255,0.1);
   --btn-highlight: #3279fe;
@@ -48,7 +48,7 @@ body.dark-mode {
   --element-bg: #30334d;
   --element-bg-invert: #fff;
   --bg-image: radial-gradient(rgba(255, 255, 255, 0.1) 0.5px, transparent 0);
-  --bg-image-invert: radial-gradient(rgba(0, 0, 0, 0.1) 0.5px, transparent 0);
+  --bg-image-invert: radial-gradient(rgba(0, 0, 0, 0.11) 0.5px, transparent 0);
   --rgba-invert: rgba(0, 0, 0, 0.1);
   --btn-highlight: var(--text-color);
   --box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.4);
@@ -67,7 +67,7 @@ button,
 .btn-light,
 .donate{
   background: #fff;
-  background-image: radial-gradient(rgba(0, 0, 0, 0.1) 0.5px, transparent 0);
+  background-image: radial-gradient(rgba(0, 0, 0, 0.11) 0.5px, transparent 0);
   background-size: 5px 5px;
   background-attachment: fixed;
 }

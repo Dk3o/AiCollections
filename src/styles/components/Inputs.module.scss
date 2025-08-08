@@ -176,7 +176,7 @@ input[type="file"]::file-selector-button {
 }
 
 .counter {
-  font-size: 14px;
+  font-size: 12px;
   font-style: italic;
   letter-spacing: 1px;
   margin-bottom: 6px;
@@ -187,7 +187,7 @@ label {
   display: block;
   margin-bottom: 6px;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .inputText {
@@ -233,6 +233,8 @@ label {
   }
 
   .form {
+    width: 100%;
+    
     label {
       font-size: 14px;
     }

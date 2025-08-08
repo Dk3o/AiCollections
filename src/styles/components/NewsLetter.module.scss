@@ -1,85 +1,86 @@
     .container {
         max-width: 500px;
     }
-        .newsLetterBox {
-            background: var(--bg-pattern-overlay);
-            padding: 2rem;
-            max-width: 500px;
-            margin: 0 auto;
-            width: 100%;
-            border-radius: 12px;
-            box-shadow: var(--box-shadow);
+    
+    .newsLetterBox {
+        background: var(--bg-pattern-overlay);
+        padding: 2rem;
+        max-width: 500px;
+        margin: 0 auto;
+        width: 100%;
+        border-radius: 12px;
+        box-shadow: var(--box-shadow);
 
-        h2 {
-            font-size: 20px;
-            text-align: center;
-            margin-bottom: 10px;
-        }
+    h2 {
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
 
-        p {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+    p {
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
 
-            input[type="email"] {
-                background: #fff;
-                background-image: radial-gradient(rgba(0, 0, 0, 0.1) 0.5px, transparent 0);
-                background-size: 5px 5px;
-                background-attachment: fixed;
-                color: #474747;
-                padding: 12px;
-                font-size: 16px;
-                border-radius: 8px;
-                border: 0;
-            }
-
-            button {
-                background-color: #2563eb;
-                color: white;
-                padding: 12px;
-                font-size: 16px;
-                border: none;
-                border-radius: 8px;
-                cursor: pointer;
-                transition: background-color 0.2s ease;
-
-                &:hover {
-                    background-color: #1e4fd1;
-                }
-            }
-        }
-
-        & .trustText {
-            font-size: 14px;
-            color: #777;
-            text-align: center;
-            margin-top: 8px;
-        }
-
-        & .previewBox {
-            margin-top: 20px;
-            background-color: #f3f4f6;
-            padding: 15px;
+        input[type="email"] {
+            background: #fff;
+            background-image: radial-gradient(rgba(0, 0, 0, 0.11) 0.5px, transparent 0);
+            background-size: 5px 5px;
+            background-attachment: fixed;
+            color: #474747;
+            padding: 12px;
+            font-size: 16px;
             border-radius: 8px;
-            ul {
-                margin: 0;
-                padding-left: 20px;
-                li {
-                    margin-bottom: 6px;
-                }
+            border: 0;
+        }
+
+        button {
+            background-color: #2563eb;
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+
+            &:hover {
+                background-color: #1e4fd1;
             }
         }
     }
 
+    & .trustText {
+        font-size: 14px;
+        color: #777;
+        text-align: center;
+        margin-top: 8px;
+    }
+
+    & .previewBox {
+        margin-top: 20px;
+        background-color: #f3f4f6;
+        padding: 15px;
+        border-radius: 8px;
+        ul {
+            margin: 0;
+            padding-left: 20px;
+            li {
+                margin-bottom: 6px;
+            }
+        }
+    }
+}
+
 @media (max-width: 510px) {
     .newsLetterBox {
         padding: 1rem;
-        margin: 50px 0 110px;
+        margin-top: 50px;
     }
 }
 

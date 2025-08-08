@@ -91,30 +91,37 @@ export function CategoriesInput({
   );
 }
 
-export function DescriptionInput({
+export function Textarea({
+  labelName = "Description",
+  name = "description",
   value,
   onChange,
   onBlur,
   touched,
   error,
-  maxLength = 420
+  maxLength,
+  hasCounter
 }) {
   return (
     <div>
       <div className={styles.top}>
-        <label htmlFor="description">
+        <label htmlFor={name}>
           {touched && error && <span className={styles.error}>*</span>}
-          Description
+          {labelName}
         </label>
-        <div className={styles.counter}>
-          <span className={styles.count}>
-            ({maxLength - value.length} characters)
-          </span>
-        </div>
+        {
+          hasCounter &&(
+            <div className={styles.counter}>
+              <span className={styles.count}>
+                ({maxLength - value.length} characters)
+              </span>
+            </div>
+          )
+        }
       </div>
       <textarea
-        id="description"
-        name="description"
+        id={name}
+        name={name}
         value={value}
         onChange={onChange}
         onBlur={onBlur}
@@ -123,17 +130,26 @@ export function DescriptionInput({
   );
 }
 
-export function ToolNameInput({ value, onChange, error, touched, onBlur }) {
+export function Input({ 
+  labelName,
+  value, 
+  onChange, 
+  error, 
+  touched = null, 
+  onBlur = null, 
+  type, 
+  name
+}) {
   return (
     <div>
-      <label htmlFor="tool-name">
+      <label htmlFor={name}>
         {touched && error && <span className={styles.error}>*</span>}
-        Tool name
+        {labelName}
       </label>
       <input
-        type="text"
-        id="tool-name"
-        name="toolName"
+        type={type}
+        id={name}
+        name={name}
         className={styles.inputText}
         value={value}
         onChange={onChange}

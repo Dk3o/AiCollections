@@ -213,7 +213,7 @@ export default function AiToolList({ searchTerm, activeTags }) {
     
   return (
     <>
-      <div className={styles.container}>
+      <div className={`${styles.container} page`}>
         <div className={styles.panelMain}>
           <div className={styles.panelContainer}>
             <div className={styles.sort}>

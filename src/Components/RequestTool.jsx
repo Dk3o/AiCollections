@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/components/RequestTool.module.scss';
 import { X } from "lucide-react";
-import { ToolNameInput, CategoriesInput, DescriptionInput } from './Inputs';
+import { Input, CategoriesInput, Textarea } from './Inputs';
 import IconUploader from './IconUploader';
-import { SubmitButtons } from './Buttons';
+import { SubmitButton } from './Buttons';
 import SuccessMessage from './SuccessMessage';
 
 export default function RequestTool({ onClose, isMobileMenuOpen }) {
@@ -182,9 +182,12 @@ export default function RequestTool({ onClose, isMobileMenuOpen }) {
       <div className={styles.requestToolOverlay}>
         <div className={styles.requestTool}>
           <button className={`btn ${styles.btnCross}`} onClick={onClose}><X size={20} /></button>
-          <h2>Request tool</h2>
           <form onSubmit={handleSubmit} className={styles.form}>
-            <ToolNameInput
+            <h1>Request tool</h1>
+            <Input
+              labelName="Tool name"
+              type="text"
+              name="toolname"
               value={requestTool.name}
               onChange={handleRequestToolName}
               error={errors.name}
@@ -201,21 +204,23 @@ export default function RequestTool({ onClose, isMobileMenuOpen }) {
               touched={touched.categories}
               onBlur={() => setTouched(prev => ({ ...prev, categories: true }))}
             />
-            <DescriptionInput
+            <Textarea
               value={requestTool.description}
               onChange={handleRequestToolDescription}
               maxLength={descriptionMaxChars}
               error={errors.description}
               touched={touched.description}
               onBlur={() => setTouched(prev => ({ ...prev, description: true }))}
+              hasCounter={true}
             />
             <IconUploader
               icon={requestTool.icon}
               onChange={handleRequestToolIcon}
             />
-            <SubmitButtons
+            <SubmitButton
               onCancel={onClose}
-              isSending={isSending}
+              loader={isSending}
+              hasCancelBtn={true}
             />
           </form>
           {isSent && <SuccessMessage />}
