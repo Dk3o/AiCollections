@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/components/RequestTool.module.scss';
 import { X } from "lucide-react";
-import { Input, CategoriesInput, Textarea } from './Inputs';
+import { FormInput, CategoriesInput, Textarea } from './Inputs';
 import IconUploader from './IconUploader';
 import { SubmitButton } from './Buttons';
 import SuccessMessage from './SuccessMessage';
@@ -182,9 +182,9 @@ export default function RequestTool({ onClose, isMobileMenuOpen }) {
       <div className={styles.requestToolOverlay}>
         <div className={styles.requestTool}>
           <button className={`btn ${styles.btnCross}`} onClick={onClose}><X size={20} /></button>
-          <form onSubmit={handleSubmit} className={styles.form}>
+          <form onSubmit={handleSubmit} className="form">
             <h1>Request tool</h1>
-            <Input
+            <FormInput
               labelName="Tool name"
               type="text"
               name="toolname"
@@ -219,11 +219,15 @@ export default function RequestTool({ onClose, isMobileMenuOpen }) {
             />
             <SubmitButton
               onCancel={onClose}
-              loader={isSending}
+              loading={isSending}
               hasCancelBtn={true}
             />
           </form>
-          {isSent && <SuccessMessage />}
+          {isSent && 
+            <SuccessMessage 
+              successMessage="✅ Tool request sent successfully!"
+            />
+          }
         </div>
       </div>
     </div>

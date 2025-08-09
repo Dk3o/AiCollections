@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Pages/Home';
 import Contact from './Pages/Contact';
 import About from './Pages/About';
-import NewsLetter from './Pages/NewsLetter';
+import Newsletter from './Pages/Newsletter';
 import { ScrollToTopButton } from './Components/Buttons';
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/newsletter" element={<NewsLetter />} />
+          <Route path="/newsletter" element={<Newsletter />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </Router>

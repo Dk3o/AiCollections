@@ -130,22 +130,26 @@ export function Textarea({
   );
 }
 
-export function Input({ 
-  labelName,
+export function FormInput({ 
+  labelName = "",
   value, 
   onChange, 
-  error, 
+  error = null, 
   touched = null, 
   onBlur = null, 
   type, 
-  name
+  name,
+  placeholder = null,
+  required = null
 }) {
   return (
     <div>
-      <label htmlFor={name}>
-        {touched && error && <span className={styles.error}>*</span>}
-        {labelName}
-      </label>
+      {labelName &&(
+        <label htmlFor={name}>
+          {touched && error && <span className={styles.error}>*</span>}
+          {labelName}
+        </label>
+      )}
       <input
         type={type}
         id={name}
@@ -154,6 +158,8 @@ export function Input({
         value={value}
         onChange={onChange}
         onBlur={onBlur}
+        placeholder={placeholder}
+        required={required}
       />
     </div>
   );

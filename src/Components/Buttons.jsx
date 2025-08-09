@@ -76,7 +76,7 @@ export function SubmitButton({
   onCancel = false, 
   loading,
   type = "submit",
-  hasCancelBtn
+  hasCancelBtn = false
 }) {
   return (
     <div className={styles.buttonContainer}>
