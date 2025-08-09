@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function SuccessMessage() {
+export default function SuccessMessage({successMessage}) {
   return (
     <div className="success-message">
-      ✅ Tool request sent successfully!
+      {successMessage}
     </div>
   );
 }
